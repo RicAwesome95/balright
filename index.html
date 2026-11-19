@@ -8,7 +8,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Santioni Spirits | Cocktails to Indulge Now, Atone Later">
   <meta property="og:description" content="Choose pleasure with Santioni Spirits: where intentional indulgence meets effortless enjoyment. Refined, ready-to-pour cocktails to help you savor the moment.">
-  <meta name="theme-color" content="#121212">
+  <meta name="theme-color" content="#1d1d1d">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/limelight.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/archivo-black.woff2" as="font" type="font/woff2" crossorigin>
@@ -19,18 +19,30 @@
 
   <!-- ============ LOADER ============ -->
   <div class="LoaderView" id="loader" role="status" aria-live="polite">
-    <div class="logo" aria-hidden="true">
-      <svg viewBox="0 0 120 120" class="emblem"><use href="#emblem"/></svg>
-    </div>
-    <div class="loader-word heading-mini">Santioni Spirits</div>
-    <div class="loading-bar" aria-label="Loading">
-      <span class="loading-bar__track"></span>
-      <span class="loading-bar__fill"></span>
-    </div>
+    <svg class="loader-wordmark" viewBox="0 0 280 120" aria-hidden="true"><use href="#wordmark-text"/></svg>
+    <svg class="loader-emblem" viewBox="0 0 120 120" aria-hidden="true">
+      <circle class="draw" cx="60" cy="60" r="56"/>
+      <g class="draw rays"><path d="M60 22 60 4M60 22 38 9M60 22 82 9M60 22 22 24M60 22 98 24M60 22 10 46M60 22 110 46M60 22 6 70M60 22 114 70"/></g>
+      <g class="draw saint">
+        <circle cx="60" cy="30" r="12"/>
+        <path d="M51 30c0-8 4-12 9-12s9 4 9 12c0 6-3 10-9 10s-9-4-9-10z"/>
+        <path d="M38 112c2-34 8-62 22-70 14 8 20 36 22 70"/>
+        <path d="M48 70c4 6 10 8 16 6M50 64h12l-4 7v9h4M58 80h-4"/>
+      </g>
+    </svg>
+    <span class="sr-only">Loading</span>
+    <div class="loading-bar" aria-hidden="true"><span class="loading-bar__fill"></span></div>
   </div>
 
   <!-- ============ AGE GATE ============ -->
   <div class="AgeGate" id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-title">
+    <svg class="smoke" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="#fff" stroke-linecap="round" filter="url(#f-smoke)">
+        <path d="M-40 620C120 520 60 380 220 300S420 140 360 20" stroke-width="26" opacity=".025"/>
+        <path d="M80 820C200 680 120 560 280 470S520 380 470 200" stroke-width="40" opacity=".02"/>
+        <path d="M980 860C1060 700 960 600 1080 480S1220 300 1150 120" stroke-width="30" opacity=".02"/>
+      </g>
+    </svg>
     <div class="intro">
       <h1 id="age-title" class="age-title">
         <span class="top"><span class="heading2">Are you of</span></span>
@@ -38,6 +50,7 @@
       </h1>
       <div class="actions">
         <button class="action body-bold" type="button" data-age="yes">Yes</button>
+        <svg class="decor" viewBox="0 0 24 64" aria-hidden="true"><use href="#ornament-v"/></svg>
         <button class="action body-bold" type="button" data-age="no">No</button>
       </div>
     </div>
@@ -48,113 +61,405 @@
     </div>
   </div>
 
-  <!-- ============ HEADER MENU ============ -->
+  <!-- ============ LOGO + HEADER MENU ============ -->
+  <a class="SiteLogo" href="#top" aria-label="Santioni Spirits, back to top">
+    <svg viewBox="0 0 120 120" class="logo-emblem" aria-hidden="true"><use href="#emblem"/></svg>
+    <svg viewBox="0 0 280 120" class="logo-word" aria-hidden="true"><use href="#wordmark-text"/></svg>
+  </a>
   <nav class="HeaderMenu" aria-label="Primary">
     <span class="header__background" aria-hidden="true"></span>
     <div class="header__content">
-      <a class="header__ornament" href="#experience" aria-label="Back to top">
-        <svg viewBox="0 0 120 120" width="22" height="22"><use href="#emblem"/></svg>
-      </a>
       <a class="header__link active" href="#experience" data-nav="experience"><span>EXPERIENCE</span></a>
-      <a class="header__link" href="#collection" data-nav="collection"><span>COLLECTION</span></a>
-      <button class="AudioToggle" type="button" aria-pressed="false" aria-label="Toggle audio">
-        <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      </button>
+      <svg class="header__ornament" viewBox="0 0 40 16" aria-hidden="true"><use href="#ornament-h"/></svg>
+      <a class="header__link" href="#taste" data-nav="collection"><span>COLLECTION</span></a>
     </div>
   </nav>
-
-  <canvas id="story-canvas" aria-hidden="true"></canvas>
+  <button class="AudioToggle" type="button" aria-pressed="false" aria-label="Toggle audio">
+    <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+  <div class="ScrollRail" aria-hidden="true"><span class="thumb"></span></div>
 
   <main class="Story" id="top">
-    <!-- ============ EXPERIENCE (the pilgrimage) ============ -->
+    <!-- ============ EXPERIENCE: the pilgrimage, told as comic panels ============ -->
     <section id="experience" class="experience" aria-label="The experience">
       <h2 class="sr-only">The pilgrimage of the saint</h2>
-      <div class="chapter chapter--title" data-scene="wander">
-        <p class="eyebrow body-bold">Notturno Collection</p>
-        <p class="title-one heading1">Santioni</p>
-        <p class="tagline body-bold">Indulge now, atone later</p>
-        <p class="scroll-cue body-bold" aria-hidden="true">Scroll to begin</p>
-      </div>
-      <div class="chapter" data-scene="wander"><p class="narration">In an immense land of nothingness, a lonely figure wanders through the mist.</p></div>
-      <div class="chapter" data-scene="hood"><p class="narration">Distant whispers alert the traveler. The saint removes his hood to look around, eyes unsure and fearful.</p></div>
-      <div class="chapter" data-scene="glimpse"><p class="narration">The saint finally catches a glimpse of what he was seeking since he went on his pilgrimage.</p></div>
-      <div class="chapter" data-scene="glimpse"><p class="narration">At the sight of it, he stands taller, gaze fixated, and determination burning within.</p></div>
-      <div class="chapter" data-scene="monolith"><p class="narration">An ominous structure stands before the saint. The humming sound seems to come from its direction. A vivid light shines through the circular portal at the base of the great monolith. Not completely believing it, the saint pauses for a moment to get his senses back.</p></div>
-      <div class="chapter" data-scene="monolith"><p class="narration">There's no time. He must see it through the end.</p></div>
-      <div class="chapter" data-scene="approach"><p class="narration">As he approaches the portal, the holy sound grows stronger, shaking him to the core. Light begins to pulsate, inviting him closer.</p></div>
-      <div class="chapter" data-scene="near"><p class="narration">A strong wind begins to blow, playful and expectant. Now standing before the portal, he raises a hand.</p></div>
-      <div class="chapter" data-scene="hand"><p class="narration">Hesitantly his hand draws forward.</p></div>
-      <div class="chapter" data-scene="hand"><p class="narration">Taking a deep breath, he steps in.</p></div>
-      <div class="chapter" data-scene="cathedral"><p class="narration">The saint loses consciousness for a brief moment. His mind struggles to process what is happening. He awakens in an exalted room lit by a warm light.</p></div>
-      <div class="chapter" data-scene="cathedral"><p class="narration">In front of him, a large pedestal pulsates with light.</p></div>
 
-      <div class="chapter chapter--select" data-scene="selection">
-        <p class="narration">Three Santioni Spirits bottles glint on the table, vibrating with a tantalizing shimmer. The saint pauses. Somehow, they're calling to him, inviting him to indulge.</p>
-        <div class="DrinkSelectionUI" role="radiogroup" aria-label="Choose a bottle for the saint">
-          <button class="bottle-pick" role="radio" aria-checked="false" data-bottle="1" style="--drink:#63C4F4">
-            <svg viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
-            <span class="body-bold">Orange</span>
-          </button>
-          <button class="bottle-pick" role="radio" aria-checked="true" data-bottle="2" style="--drink:#97F3AD">
-            <svg viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
-            <span class="body-bold">Mint</span>
-          </button>
-          <button class="bottle-pick" role="radio" aria-checked="false" data-bottle="3" style="--drink:#FBEB7F">
-            <svg viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
-            <span class="body-bold">Marshmallow</span>
-          </button>
+      <!-- title: dark brushed sky, ink clouds -->
+      <div class="chapter chapter--title bleed bleed--night" data-scene="title">
+        <svg class="bleed-art" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#sky-night"/></svg>
+        <p class="title-one" aria-label="The Notturno Experience">
+          <span class="t-the">The</span>
+          <span class="t-big">Notturno</span>
+          <span class="t-big">Experience</span>
+        </p>
+        <svg class="clouds" viewBox="0 0 1600 360" preserveAspectRatio="none" aria-hidden="true"><use href="#cloudbank"/></svg>
+      </div>
+
+      <!-- 1 wander -->
+      <div class="chapter page" data-scene="wander">
+        <figure class="panel p-wide" data-speed=".06" style="--rot:-1deg">
+          <svg viewBox="0 0 1000 600" data-quad="10,14 990,0 976,592 24,600" aria-hidden="true">
+            <use href="#sky-night" width="1000" height="600"/>
+            <use href="#cloudbank" y="180" width="1000" height="220"/>
+            <rect y="330" width="1000" height="270" fill="#f4f2ec"/>
+            <path d="M60 420c180-30 330-60 520-40M420 470c160-10 280 10 520-20M120 540h140M640 500l80-10M80 590l40-40M300 600l20-50M720 600l-30-60M880 590l40-50" stroke="#121212" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <use href="#saint-hood" x="440" y="300" width="130" height="260"/>
+          </svg>
+        </figure>
+        <p class="narration cap-br">In an immense land of nothingness, a lonely figure wanders through the mist.</p>
+      </div>
+
+      <!-- 2 hood -->
+      <div class="chapter page" data-scene="hood">
+        <div class="panel-row">
+          <figure class="panel p-half" data-speed=".1" style="--rot:1deg">
+            <svg viewBox="0 0 600 520" data-quad="0,0 600,10 590,520 6,506" aria-hidden="true">
+              <rect width="600" height="520" fill="#f4f2ec"/>
+              <rect width="600" height="300" fill="#2a2a2a"/>
+              <path d="M0 120c120-30 240 20 380-20s180 10 220-10M0 220c140-20 260 30 600-30" stroke="#121212" stroke-width="10" fill="none" opacity=".6"/>
+              <use href="#robe-low" x="150" y="0" width="300" height="470"/>
+            </svg>
+          </figure>
+          <figure class="panel p-small" data-speed="-.04" style="--rot:-1.5deg">
+            <svg viewBox="0 0 500 300" data-quad="0,6 500,0 494,300 4,294" aria-hidden="true">
+              <rect width="500" height="300" fill="#ecebe6"/>
+              <rect width="500" height="300" fill="url(#p-dots)" opacity=".35"/>
+              <path d="M150 0c-10 90-30 160-40 220h260c-10-60-30-130-40-220z" fill="var(--robe,#b39c6f)" stroke="#121212" stroke-width="5"/>
+              <path d="M300 0c10 80 20 150 30 220h40c-10-70-25-140-40-220z" fill="url(#p-hatch)"/>
+              <path d="M170 220c10 30 40 40 70 36 20 20 60 18 70 0-10-14-40-20-60-16-20-14-60-30-80-20z" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+            </svg>
+          </figure>
+        </div>
+        <p class="narration cap-r">Distant whispers alert the traveler. The saint removes his hood to look around, eyes unsure and fearful.</p>
+      </div>
+
+      <!-- 3 glimpse -->
+      <div class="chapter page" data-scene="glimpse">
+        <figure class="panel p-open" data-speed=".08">
+          <svg viewBox="0 0 900 640" aria-hidden="true">
+            <g stroke="#121212" stroke-width="4" stroke-linecap="round">
+              <path d="M180 120 220 170M330 40l12 50M600 60l-20 50M760 150l-50 30M120 320h60M800 330h-60M170 520l50-30M760 520l-50-30M420 20l2 40"/>
+            </g>
+            <rect x="300" y="250" width="320" height="390" fill="#f4f2ec" stroke="#121212" stroke-width="3"/>
+            <use href="#saint-profile" x="250" y="120" width="440" height="520"/>
+          </svg>
+        </figure>
+        <p class="narration cap-bl">The saint finally catches a glimpse of what he was seeking since he went on his pilgrimage.</p>
+      </div>
+
+      <!-- 4 glimpse 2 -->
+      <div class="chapter page" data-scene="glimpse">
+        <figure class="panel p-tall" data-speed=".05" style="--rot:.6deg">
+          <svg viewBox="0 0 520 640" data-quad="0,0 520,6 512,640 8,632" aria-hidden="true">
+            <rect width="520" height="640" fill="#1a1a1a"/>
+            <path d="M40 0c20 200 10 420-10 640h420c-30-220-40-440-20-640z" fill="var(--robe,#b39c6f)"/>
+            <path d="M330 0c-10 200 0 420 40 640h80c-30-220-40-440-20-640z" fill="#121212"/>
+            <path d="M120 60c30 120 20 300-20 520M220 40c10 160 30 360 20 560M300 80c-30 140-20 300 10 480" stroke="#121212" stroke-width="4" fill="none"/>
+            <path d="M60 0c20 200 10 420-10 640" stroke="url(#p-hatch)" stroke-width="60" fill="none" opacity=".5"/>
+          </svg>
+        </figure>
+        <p class="narration cap-tr">At the sight of it, he stands taller, gaze fixated, and determination burning within.</p>
+      </div>
+
+      <!-- 5 monolith -->
+      <div class="chapter page" data-scene="monolith">
+        <figure class="panel p-wide" data-speed=".08" style="--rot:-.8deg">
+          <svg viewBox="0 0 1000 560" data-quad="0,40 990,0 1000,560 10,540" aria-hidden="true">
+            <rect width="1000" height="560" fill="#f4f2ec"/>
+            <use href="#steps" y="200" width="1000" height="360"/>
+            <circle cx="620" cy="190" r="190" fill="#f7f6f2" stroke="#121212" stroke-width="5"/>
+            <path d="M620 0a190 190 0 0 1 0 380 120 190 0 0 0 0-380z" fill="url(#p-dots-fine)"/>
+            <path d="M560 90a6 6 0 1 0 1 0M690 140a5 5 0 1 0 1 0M520 220a4 4 0 1 0 1 0M700 300a7 4 0 1 0 1 0" stroke="#121212" stroke-width="3" fill="none"/>
+            <path d="M120 560c20-120 60-200 140-220 50 30 70 120 70 220z" fill="var(--robe,#b39c6f)" stroke="#121212" stroke-width="5"/>
+            <path d="M150 380c40-10 70 0 100 20" stroke="#121212" stroke-width="4" fill="none"/>
+          </svg>
+        </figure>
+        <p class="narration cap-bl wide">An ominous structure stands before the saint. The humming sound seems to come from its direction. A vivid light shines through the circular portal at the base of the great monolith. Not completely believing it, the saint pauses for a moment to get his senses back.</p>
+      </div>
+
+      <!-- 6 monolith 2 -->
+      <div class="chapter page" data-scene="monolith">
+        <figure class="panel p-wide" data-speed=".05" style="--rot:.5deg">
+          <svg viewBox="0 0 1000 620" data-quad="12,0 1000,8 988,620 0,606" aria-hidden="true">
+            <rect width="1000" height="620" fill="#2a2a2a"/>
+            <use href="#cloudbank" y="40" width="1000" height="200"/>
+            <rect x="560" y="0" width="150" height="250" fill="#ecebe6" stroke="#121212" stroke-width="5"/>
+            <rect x="560" y="0" width="150" height="250" fill="url(#p-hatch-fine)" opacity=".35"/>
+            <circle cx="635" cy="200" r="50" fill="var(--portal)" stroke="#121212" stroke-width="5"/>
+            <rect y="230" width="1000" height="390" fill="#f4f2ec"/>
+            <use href="#steps" x="0" y="230" width="1000" height="390"/>
+            <use href="#saint-back" x="120" y="150" width="300" height="420"/>
+          </svg>
+        </figure>
+        <p class="narration cap-br">There's no time. He must see it through the end.</p>
+      </div>
+
+      <!-- 7 approach -->
+      <div class="chapter page" data-scene="approach">
+        <figure class="panel p-tall p-big" data-speed=".07" style="--rot:-.5deg">
+          <svg viewBox="0 0 800 640" data-quad="40,0 760,0 800,640 0,640" aria-hidden="true">
+            <rect width="800" height="640" fill="#ecebe6"/>
+            <rect width="800" height="520" fill="url(#p-hatch-fine)" opacity=".6"/>
+            <circle cx="400" cy="270" r="250" fill="var(--portal)" stroke="#121212" stroke-width="6"/>
+            <g fill="none" stroke="#121212" stroke-width="2" opacity=".35"><circle cx="400" cy="270" r="200"/><circle cx="400" cy="270" r="140"/><circle cx="400" cy="270" r="80"/></g>
+            <rect y="520" width="800" height="120" fill="#f4f2ec"/>
+            <path d="M0 540h800M60 640l40-100M260 640l20-100M520 640l-20-100M740 640l-40-100" stroke="#121212" stroke-width="3"/>
+            <use href="#saint-back" x="330" y="360" width="140" height="200"/>
+          </svg>
+        </figure>
+        <p class="narration cap-l">As he approaches the portal, the holy sound grows stronger, shaking him to the core. Light begins to pulsate, inviting him closer.</p>
+      </div>
+
+      <!-- 8 near -->
+      <div class="chapter page" data-scene="near">
+        <figure class="panel p-wide" data-speed=".06" style="--rot:.4deg">
+          <svg viewBox="0 0 1000 420" data-quad="0,0 1000,12 990,420 10,410" aria-hidden="true">
+            <rect width="1000" height="420" fill="#ecebe6"/>
+            <rect width="1000" height="420" fill="url(#p-hatch-fine)" opacity=".55"/>
+            <circle cx="500" cy="120" r="300" fill="var(--portal)" stroke="#121212" stroke-width="6"/>
+            <rect y="360" width="1000" height="60" fill="#f4f2ec"/>
+            <use href="#saint-back" class="wind" x="410" y="160" width="180" height="230"/>
+          </svg>
+        </figure>
+        <p class="narration cap-r">A strong wind begins to blow, playful and expectant. Now standing before the portal, he raises a hand.</p>
+      </div>
+
+      <!-- 9 hand -->
+      <div class="chapter page bleed bleed--maroon" data-scene="hand">
+        <svg class="bleed-art" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <use href="#grain" width="1600" height="1000"/>
+          <g data-speed=".12" class="parallax-g">
+            <path d="M1700 1100C1400 900 1200 760 980 640L900 560C860 520 820 470 760 420 740 380 700 360 660 360 630 330 590 320 560 340 520 330 500 360 520 380 550 380 580 400 590 420 600 450 640 470 680 480 720 520 760 560 800 600L900 720C1100 900 1300 1000 1500 1100Z" fill="#b9b6ad" stroke="#121212" stroke-width="6"/>
+            <path d="M1700 1000C1450 860 1250 760 1020 660L960 760C1180 880 1400 980 1600 1100Z" fill="#9e9a90" stroke="#121212" stroke-width="6"/>
+            <g fill="none" stroke="#121212" stroke-width="10"><ellipse cx="1080" cy="720" rx="40" ry="26" transform="rotate(30 1080 720)"/><ellipse cx="1200" cy="790" rx="40" ry="26" transform="rotate(30 1200 790)"/><ellipse cx="1320" cy="860" rx="40" ry="26" transform="rotate(30 1320 860)"/><ellipse cx="1440" cy="930" rx="40" ry="26" transform="rotate(30 1440 930)"/></g>
+            <path d="M700 420c40 30 80 60 120 120M640 380c30 10 50 30 60 50" stroke="#121212" stroke-width="4" fill="none"/>
+          </g>
+        </svg>
+        <p class="narration cap-l">Hesitantly his hand draws forward.</p>
+      </div>
+
+      <!-- 10 hand: steps in -->
+      <div class="chapter page" data-scene="hand">
+        <figure class="panel p-wide p-portal" data-speed=".05">
+          <svg viewBox="0 0 1000 620" data-quad="0,0 1000,0 1000,620 0,620" aria-hidden="true">
+            <rect width="1000" height="620" fill="#f4f2ec"/>
+            <rect width="1000" height="620" fill="url(#p-hatch)" opacity=".85"/>
+            <circle cx="500" cy="300" r="290" fill="#f4f2ec" stroke="#121212" stroke-width="6"/>
+            <circle cx="500" cy="300" r="250" fill="var(--red)" stroke="#121212" stroke-width="6"/>
+            <path d="M380 140c-30-60 20-140 120-140S650 80 610 140" fill="none" stroke="#121212" stroke-width="2" opacity=".3"/>
+            <use href="#saint-silhouette" x="360" y="80" width="280" height="460"/>
+            <path d="M0 470h300M700 470h300M0 540h330M670 540h330" stroke="#121212" stroke-width="5"/>
+          </svg>
+        </figure>
+        <p class="narration cap-bl">Taking a deep breath, he steps in.</p>
+      </div>
+
+      <!-- transition: ink curtain -->
+      <div class="chapter chapter--curtain" data-scene="curtain" aria-hidden="true">
+        <svg viewBox="0 0 1600 800" preserveAspectRatio="none"><use href="#curtain" width="1600" height="800"/></svg>
+      </div>
+
+      <!-- 11 cathedral -->
+      <div class="chapter page bleed bleed--red" data-scene="cathedral">
+        <svg class="bleed-art" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#cathedral" width="1600" height="1000"/></svg>
+        <p class="narration cap-r">The saint loses consciousness for a brief moment. His mind struggles to process what is happening. He awakens in an exalted room lit by a warm light.</p>
+      </div>
+
+      <!-- 12 cathedral: pedestal -->
+      <div class="chapter page bleed bleed--red" data-scene="cathedral">
+        <svg class="bleed-art zoom" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#cathedral" width="1600" height="1000"/></svg>
+        <p class="narration cap-l">In front of him, a large pedestal pulsates with light.</p>
+      </div>
+
+      <!-- 13 selection -->
+      <div class="chapter page chapter--select" data-scene="selection">
+        <figure class="panel p-wide" data-speed=".05" style="--rot:-.4deg">
+          <svg viewBox="0 0 1000 560" data-quad="0,0 1000,10 994,560 4,552" aria-hidden="true">
+            <rect width="1000" height="560" fill="var(--red)"/>
+            <path d="M0 330c200-20 400 10 1000-20v250H0z" fill="#f4f2ec"/>
+            <path d="M0 330c200-20 400 10 1000-20" stroke="#121212" stroke-width="5" fill="none"/>
+            <rect y="400" width="1000" height="160" fill="url(#p-hatch-h)" opacity=".7"/>
+            <use href="#saint-front" x="250" y="40" width="200" height="420"/>
+            <use href="#pedestal" x="440" y="250" width="200" height="200"/>
+            <use href="#cbottle" x="476" y="186" width="34" height="100" style="--drink:var(--orange)"/>
+            <use href="#cbottle" x="514" y="186" width="34" height="100" style="--drink:var(--mint)"/>
+            <use href="#cbottle" x="552" y="186" width="34" height="100" style="--drink:var(--marsh)"/>
+          </svg>
+        </figure>
+        <p class="narration cap-tr">Three Santioni Spirits bottles glint on the table, vibrating with a tantalizing shimmer. The saint pauses. Somehow, they're calling to him, inviting him to indulge.</p>
+        <div class="select-stage panel" data-speed="-.03">
+          <svg class="select-bg" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="1000" height="620" fill="#f4f2ec"/>
+            <rect width="1000" height="420" fill="url(#p-hatch)"/>
+            <path d="M40 420h920l40 60H0z" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+            <rect y="480" width="1000" height="140" fill="#121212"/>
+          </svg>
+          <div class="DrinkSelectionUI" role="radiogroup" aria-label="Choose a bottle for the saint">
+            <button class="bottle-pick" role="radio" aria-checked="false" data-bottle="1" style="--drink:#63C4F4">
+              <svg viewBox="0 0 80 240" aria-hidden="true"><use href="#cbottle"/></svg>
+              <span class="body-bold">Orange</span>
+            </button>
+            <button class="bottle-pick" role="radio" aria-checked="true" data-bottle="2" style="--drink:#97F3AD">
+              <svg viewBox="0 0 80 240" aria-hidden="true"><use href="#cbottle"/></svg>
+              <span class="body-bold">Mint</span>
+            </button>
+            <button class="bottle-pick" role="radio" aria-checked="false" data-bottle="3" style="--drink:#FBEB7F">
+              <svg viewBox="0 0 80 240" aria-hidden="true"><use href="#cbottle"/></svg>
+              <span class="body-bold">Marshmallow</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="chapter" data-scene="beam">
-        <p class="narration" id="drink-copy" aria-live="polite">The saint drinks, and in an instant, a beam of light engulfs him, swirling with mint, chocolate, and cream, an ethereal trail that lifts him beyond the senses.</p>
+      <!-- pour (no voice-over in the original) -->
+      <div class="chapter page DrinkPourUI" id="pour" data-scene="pour" aria-label="The pour">
+        <figure class="panel p-wide" data-speed=".06" style="--rot:.5deg">
+          <svg viewBox="0 0 1000 600" data-quad="0,0 1000,0 1000,600 0,600" aria-hidden="true">
+            <rect width="1000" height="600" fill="#121212"/>
+            <rect x="40" y="40" width="920" height="560" fill="var(--red)"/>
+            <g class="pour-bottle"><use href="#cbottle" x="300" y="30" width="110" height="330" transform="rotate(-62 355 195)"/></g>
+            <path d="M80 300c60-30 140-40 200-20l50 40c-30 30-90 50-160 50-40 0-70-20-90-70z" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+            <path d="M120 300l-80 30" stroke="#121212" stroke-width="5"/>
+            <path class="stream" d="M470 270c10 60 20 120 22 200" stroke="var(--drink)" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <use href="#glass" x="400" y="400" width="200" height="200"/>
+          </svg>
+        </figure>
+        <figure class="panel p-wide" data-speed=".03" style="--rot:-.4deg">
+          <svg viewBox="0 0 1000 600" data-quad="0,10 1000,0 1000,600 0,590" aria-hidden="true">
+            <rect width="1000" height="600" fill="var(--red)"/>
+            <rect x="0" y="0" width="200" height="600" fill="#121212"/>
+            <use href="#capital" x="60" y="60" width="760" height="520"/>
+          </svg>
+        </figure>
+        <figure class="panel p-wide" data-speed=".05" style="--rot:.3deg">
+          <svg viewBox="0 0 1000 600" data-quad="0,0 1000,6 1000,600 0,600" aria-hidden="true">
+            <rect width="1000" height="600" fill="var(--red)"/>
+            <use href="#column" x="0" y="-40" width="220" height="680" style="--col:#f4f2ec"/>
+            <use href="#saint-front" class="hold" x="330" y="60" width="320" height="640"/>
+            <g transform="translate(660 70)"><rect width="270" height="150" fill="var(--red)" stroke="#121212" stroke-width="5"/><use href="#saint-front" x="60" y="10" width="100" height="200"/></g>
+          </svg>
+        </figure>
       </div>
-      <div class="chapter" data-scene="float"><p class="narration">The saint gently floats back to the floor, one foot after the other. His robe now saturated with the color of the mysterious liquid.</p></div>
-      <div class="chapter" data-scene="crumble"><p class="narration">The sudden roar of shattering stone fills the air. The columns and roof begin to break apart and lift away, revealing a deep red sky.</p></div>
+
+      <!-- 14 beam -->
+      <div class="chapter page bleed bleed--ink" data-scene="beam">
+        <svg class="bleed-art vortex" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#vortex" width="1600" height="1000"/></svg>
+        <svg class="floater" viewBox="0 0 300 420" aria-hidden="true"><use href="#saint-float"/></svg>
+        <p class="narration cap-r" id="drink-copy" aria-live="polite">The saint drinks, and in an instant, a beam of light engulfs him, swirling with mint, chocolate, and cream, an ethereal trail that lifts him beyond the senses.</p>
+      </div>
+
+      <!-- 15 float -->
+      <div class="chapter page" data-scene="float">
+        <figure class="panel p-wide" data-speed=".05" style="--rot:-.5deg">
+          <svg viewBox="0 0 1000 560" data-quad="0,0 1000,14 990,560 8,548" aria-hidden="true">
+            <rect width="1000" height="560" fill="var(--red)"/>
+            <use href="#column" class="crack" x="180" y="-20" width="170" height="620" style="--col:#f4f2ec"/>
+            <use href="#column" class="crack" x="560" y="-60" width="170" height="620" style="--col:#f4f2ec"/>
+            <path d="M260 120l30 40-20 40 30 50M640 200l-30 50 30 40-10 60" stroke="#121212" stroke-width="4" fill="none"/>
+            <path d="M120 70l14 10M820 160l12-8M400 380l10 6M760 440l14 4" stroke="#f4f2ec" stroke-width="4"/>
+          </svg>
+        </figure>
+        <p class="narration cap-bl">The saint gently floats back to the floor, one foot after the other. His robe now saturated with the color of the mysterious liquid.</p>
+      </div>
+
+      <!-- 16 crumble -->
+      <div class="chapter page bleed bleed--red" data-scene="crumble">
+        <p class="title-one title-one--red" aria-hidden="true">
+          <span class="t-the">The</span>
+          <span class="t-big">Notturno</span>
+          <span class="t-big">Experience</span>
+        </p>
+        <svg class="bleed-art debris" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g class="parallax-g" data-speed="-.35"><use href="#rock" x="260" y="380" width="160" height="150"/><use href="#rock" x="1150" y="420" width="120" height="110"/></g>
+          <g class="parallax-g" data-speed="-.2"><use href="#rock" x="560" y="200" width="70" height="60"/><use href="#rock" x="920" y="160" width="80" height="70"/><use href="#rock" x="1330" y="650" width="90" height="80"/></g>
+          <g stroke="#121212" stroke-width="4" stroke-linecap="round"><path d="M200 200l20 30M1400 260l-14 26M700 760l18 20M1200 820l-20 24M400 860l14 18"/></g>
+        </svg>
+        <p class="narration cap-br">The sudden roar of shattering stone fills the air. The columns and roof begin to break apart and lift away, revealing a deep red sky.</p>
+      </div>
+
+      <!-- colosseum -->
+      <div class="chapter page bleed bleed--red chapter--colosseum" data-scene="colosseum" aria-hidden="true">
+        <svg class="bleed-art" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice"><use href="#colosseum" width="1600" height="1000"/></svg>
+        <svg class="floater floater--land" viewBox="0 0 240 420"><use href="#saint-back" style="--robe:var(--drink)"/></svg>
+      </div>
     </section>
 
-    <!-- ============ COLLECTION ============ -->
+    <!-- ============ TASTE ============ -->
+    <section class="TasteUI" id="taste" aria-labelledby="taste-title">
+      <svg class="torn" viewBox="0 0 1600 140" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0h1600v96c-40 4-70-14-110-6s-60 26-110 18-70-22-120-14-60 30-120 22-80-24-130-16-70 26-120 20-60-30-120-22-70 28-130 20-60-24-110-18-80 28-130 22S300 92 240 100s-70 26-120 20S40 98 0 104z" fill="#121212"/></svg>
+      <div class="container">
+        <p class="taste-hero" aria-label="Indulge now, atone later">
+          <svg class="flourish" viewBox="0 0 60 14" aria-hidden="true"><use href="#flourish"/></svg>
+          <span><span>Indulge now</span><span>Atone later</span></span>
+          <svg class="flourish flip" viewBox="0 0 60 14" aria-hidden="true"><use href="#flourish"/></svg>
+        </p>
+        <div class="row-heading">
+          <h2 id="taste-title" class="body-bold slide-in" data-from="50%" data-heading="1">The Notturno Collection <br>is an ode to the night</h2>
+          <p class="body-bold slide-in" data-heading="2">A taste<br>of possibility</p>
+          <p class="body-bold slide-in" data-from="-50%" data-heading="3">Inspired by the quiet glamour<br>of the late hours</p>
+        </div>
+        <div class="row-copy">
+          <div class="side side--left">
+            <p class="body-bold slide-in" data-from="23vw">Santioni</p>
+            <p class="body-bold slide-in low" data-from="23vw">Spirits</p>
+          </div>
+          <p class="copy body-regular">True devotion requires a little indulgence. Santioni Spirits is crafted for the saints and the sinners alike. The Notturno Collection blends heavenly cream and earthly decadence to unwind your soul and elevate your evenings.</p>
+          <div class="side side--right">
+            <p class="body-bold slide-in" data-from="-23vw">Collection</p>
+            <p class="body-bold slide-in low" data-from="-23vw">Notturno</p>
+          </div>
+        </div>
+        <div class="row-copy-mobile">
+          <p class="body-bold">Santioni<br>Spirits</p>
+          <p class="body-bold">Notturno<br>Collection</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLLECTION: the ritual poster ============ -->
     <section id="collection" class="CollectionUI" aria-labelledby="collection-title">
       <div class="collection-ui__center-text">
-        <p class="left-text heading3">Santioni</p>
+        <p class="left-text body-bold">The night starts<br> after dinner</p>
+        <span class="divider" aria-hidden="true"></span>
         <div class="collection-ui__text-quad">
-          <span class="quad-frame" aria-hidden="true"></span>
-          <p class="quad-line body-bold">An ode to the night, your night</p>
-          <div class="quad-bottles" aria-hidden="true">
-            <svg viewBox="0 0 80 220" style="--drink:#63C4F4"><use href="#bottle"/></svg>
-            <svg viewBox="0 0 80 220" style="--drink:#97F3AD"><use href="#bottle"/></svg>
-            <svg viewBox="0 0 80 220" style="--drink:#FBEB7F"><use href="#bottle"/></svg>
+          <div class="poster-head">
+            <span class="body-bold">Santioni</span>
+            <h2 id="collection-title" class="body-bold">Notturno Collection</h2>
+            <span class="body-bold">Spirits</span>
           </div>
-          <h2 id="collection-title" class="quad-line body-bold">Notturno Collection</h2>
+          <p class="poster-copy">Chill your spirit. The night starts after dinner. Shake your spirit. Let the night play on. Pour your spirit. What happens next is up to you.</p>
+          <svg class="poster-glass" viewBox="0 0 200 200" aria-hidden="true"><use href="#glass"/></svg>
+          <svg class="poster-mark" viewBox="0 0 24 64" aria-hidden="true"><use href="#ornament-v"/></svg>
         </div>
-        <p class="right-text heading3">Spirits</p>
+        <span class="divider" aria-hidden="true"></span>
+        <p class="right-text body-bold">What happens<br> next is up to you</p>
       </div>
     </section>
 
     <!-- ============ PRODUCTS ============ -->
     <section class="ProductsUI" id="products" aria-roledescription="carousel" aria-label="The Notturno Collection">
       <div class="container">
-        <button class="left-text side-nav" type="button" aria-label="previous slide"><span class="body-bold" data-prev-label>Marshmallow Coffee &amp; Cream</span></button>
+        <button class="left-text side-nav" type="button" aria-label="previous slide"><span class="body-bold" data-prev-label>Marshmallow<br>Coffee<br>&amp; Cream</span></button>
         <div class="gl-bounds">
           <ul class="slides">
             <li class="slide" data-index="0" style="--drink:#63C4F4" aria-roledescription="slide" aria-label="1 of 3">
-              <svg class="product-bottle" viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
               <h3 class="product-name">Orange<br>Chocolate<br>&amp; Cream</h3>
-              <p class="product-notes body-regular">Bright orange zest folded into dark chocolate and heavenly cream.</p>
+              <svg class="product-bottle" viewBox="0 0 120 360" aria-hidden="true"><use href="#pbottle"/></svg>
+              <div class="product-meta body-bold"><span>Notturno<br>N.02</span><svg viewBox="0 0 24 64" aria-hidden="true"><use href="#ornament-v"/></svg><span>13% ABV<br>700 ML</span></div>
             </li>
             <li class="slide" data-index="1" style="--drink:#97F3AD" aria-roledescription="slide" aria-label="2 of 3">
-              <svg class="product-bottle" viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
               <h3 class="product-name">Mint<br>Chocolate<br>&amp; Cream</h3>
-              <p class="product-notes body-regular">Cool mint and velvet chocolate, softened with sweet cream.</p>
+              <svg class="product-bottle" viewBox="0 0 120 360" aria-hidden="true"><use href="#pbottle"/></svg>
+              <div class="product-meta body-bold"><span>Notturno<br>Collection</span><svg viewBox="0 0 24 64" aria-hidden="true"><use href="#ornament-v"/></svg><span>Santioni<br>Spirits</span></div>
             </li>
             <li class="slide" data-index="2" style="--drink:#FBEB7F" aria-roledescription="slide" aria-label="3 of 3">
-              <svg class="product-bottle" viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
               <h3 class="product-name">Marshmallow<br>Coffee<br>&amp; Cream</h3>
-              <p class="product-notes body-regular">Toasted marshmallow over roasted coffee and a ribbon of cream.</p>
+              <svg class="product-bottle" viewBox="0 0 120 360" aria-hidden="true"><use href="#pbottle"/></svg>
+              <div class="product-meta body-bold"><span>Notturno<br>Collection</span><svg viewBox="0 0 24 64" aria-hidden="true"><use href="#ornament-v"/></svg><span>Santioni<br>Spirits</span></div>
             </li>
           </ul>
         </div>
-        <button class="right-text side-nav" type="button" aria-label="next slide"><span class="body-bold" data-next-label>Mint Chocolate &amp; Cream</span></button>
+        <button class="right-text side-nav" type="button" aria-label="next slide"><span class="body-bold" data-next-label>Mint<br>Chocolate<br>&amp; Cream</span></button>
       </div>
       <div class="mobile-arrows">
         <button class="mobile-arrow-left" type="button" aria-label="previous slide"><svg viewBox="0 0 20 7" width="20" height="7" aria-hidden="true"><path d="M20 3.5H1M1 3.5 4.5 0M1 3.5 4.5 7" stroke="#121212" stroke-width="1.4" fill="none"/></svg></button>
@@ -167,65 +472,17 @@
       </div>
     </section>
 
-    <!-- ============ TASTE ============ -->
-    <section class="TasteUI" id="taste" aria-labelledby="taste-title">
-      <div class="container">
-        <div class="row-heading">
-          <h2 id="taste-title" class="heading-taste" data-heading="1">The Notturno Collection <br>is an ode to the night</h2>
-          <p class="heading-taste" data-heading="2">A taste<br>of possibility</p>
-          <p class="heading-taste" data-heading="3">Inspired by the quiet glamour<br>of the late hours</p>
-        </div>
-        <div class="gl-bounds taste-swirl" aria-hidden="true">
-          <span style="--drink:#63C4F4"></span><span style="--drink:#97F3AD"></span><span style="--drink:#FBEB7F"></span>
-        </div>
-        <div class="row-copy">
-          <p class="side-text body-bold">Santioni</p>
-          <p class="side-text body-bold">Spirits</p>
-          <p class="copy body-regular">True devotion requires a little indulgence. Santioni Spirits is crafted for the saints and the sinners alike. The Notturno Collection blends heavenly cream and earthly decadence to unwind your soul and elevate your evenings.</p>
-          <p class="side-text body-bold">Notturno</p>
-          <p class="side-text body-bold">Collection</p>
-        </div>
-        <div class="row-copy-mobile">
-          <p class="body-bold">Santioni<br>Spirits</p>
-          <p class="body-bold">Notturno<br>Collection</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ POUR RITUAL ============ -->
-    <section class="DrinkPourUI" id="pour" aria-labelledby="pour-title">
-      <h2 id="pour-title" class="heading2 pour-heading">The night starts<br> after dinner</h2>
-      <ol class="pour-steps">
-        <li class="pour-section">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6v52M10 19l44 26M54 19 10 45M32 6l-5 5m5-5 5 5M32 58l-5-5m5 5 5-5" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
-          <h3 class="body-bold">Chill your spirit</h3>
-          <p class="body-regular">The night starts after dinner.</p>
-        </li>
-        <li class="pour-section">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M22 14h20l-3 44H25zM20 8h24v6H20z" stroke="currentColor" stroke-width="3" fill="none" stroke-linejoin="round"/><path d="M10 26c-4 6-4 12 0 18M54 26c4 6 4 12 0 18" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
-          <h3 class="body-bold">Shake your spirit</h3>
-          <p class="body-regular">Let the night play on.</p>
-        </li>
-        <li class="pour-section">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 12h40L34 34v18h10M34 52H24" stroke="currentColor" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M20 20h24" stroke="currentColor" stroke-width="3"/></svg>
-          <h3 class="body-bold">Pour your spirit</h3>
-          <p class="body-regular">What happens next is up to you.</p>
-        </li>
-      </ol>
-      <p class="heading2 pour-heading pour-heading--end">What happens<br> next is up to you</p>
-    </section>
-
     <!-- ============ RETAIL ============ -->
     <section class="RetailUI" id="retail" data-retailers-length="0" aria-labelledby="retail-list-heading">
       <div class="container">
         <div class="header">
+          <svg class="header-decoration" viewBox="0 0 24 64" aria-hidden="true"><use href="#ornament-v"/></svg>
           <div class="mobile-header-text body-bold"><span>Santioni<br>Spirits</span><span>Notturno<br>Collection</span></div>
           <div class="header-row">
-            <p class="header-row-left body-bold">Santioni<br>Spirits</p>
-            <div class="stack"><h2 class="heading3" id="retail-list-heading">Our Retailers</h2></div>
-            <p class="header-row-right body-bold">Notturno<br>Collection</p>
+            <p class="header-row-left body-bold slide-in" data-from="10vw">Santioni<br>Spirits</p>
+            <div class="stack"><h2 class="heading3" id="retail-list-heading">Select Houses Forthcoming</h2></div>
+            <p class="header-row-right body-bold slide-in" data-from="-10vw">Notturno<br>Collection</p>
           </div>
-          <p class="body-bold forthcoming">Select Houses Forthcoming</p>
         </div>
         <div class="list">
           <span class="decoration" aria-hidden="true"><span class="line"></span></span>
@@ -237,20 +494,24 @@
 
     <!-- ============ FOOTER ============ -->
     <footer class="FooterUI" id="footer">
+      <svg class="footer-smoke" viewBox="0 0 600 400" preserveAspectRatio="xMinYMid slice" aria-hidden="true">
+        <g fill="none" stroke="#fff" stroke-linecap="round" filter="url(#f-smoke)" opacity=".05"><path d="M-20 420C60 300 0 220 90 140S200 40 150-20" stroke-width="40"/><path d="M60 440c60-120 20-180 100-260" stroke-width="24"/></g>
+      </svg>
       <div class="footer-group">
         <a class="footer-logo" href="#top" aria-label="Santioni Spirits Logo, back to top">
-          <svg viewBox="0 0 280 120" aria-hidden="true"><use href="#wordmark"/></svg>
+          <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#emblem"/></svg>
+          <svg viewBox="0 0 280 120" aria-hidden="true"><use href="#wordmark-text"/></svg>
         </a>
         <div class="footer-social">
           <a class="body-bold" href="https://www.instagram.com/santionispirits" target="_blank" rel="noopener">Instagram</a>
-          <a class="body-bold footer-email" href="mailto:indulge@santionispirits.com">indulge@santionispirits.com</a>
+          <a class="body-regular footer-email" href="mailto:indulge@santionispirits.com">indulge@santionispirits.com</a>
         </div>
       </div>
       <div class="footer-group footer-group--bottom">
         <p class="footer-tag body-regular">Cocktails to indulge now, atone later. Please enjoy responsibly.</p>
         <div class="footer-links body-regular">
           <span>Original experience by <a class="underline" href="https://activetheory.net" target="_blank" rel="noopener">Active Theory</a> and <a class="underline" href="https://plan8.co" target="_blank" rel="noopener">Plan8</a></span>
-          <a class="underline" href="https://cdn.sanity.io/files/nhqx6ogi/production/d2513cb86f7baedec1e90571f62be07acd158d56.pdf?dl=privacy-policy.pdf" target="_blank" rel="noopener">Legal</a>
+          <a href="https://cdn.sanity.io/files/nhqx6ogi/production/d2513cb86f7baedec1e90571f62be07acd158d56.pdf?dl=privacy-policy.pdf" target="_blank" rel="noopener">Legal</a>
         </div>
       </div>
     </footer>
@@ -265,43 +526,254 @@
     </div>
   </div>
 
-  <!-- ============ SVG SYMBOLS (original artwork) ============ -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- ============ SVG LIBRARY (original artwork, drawn for this remake) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <linearGradient id="glass" x1="0" x2="1">
-        <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
-        <stop offset=".35" stop-color="#fff" stop-opacity=".05"/>
-        <stop offset="1" stop-color="#fff" stop-opacity=".25"/>
-      </linearGradient>
+      <filter id="f-smoke" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+      <pattern id="p-hatch" width="7" height="10" patternUnits="userSpaceOnUse"><rect width="2.6" height="10" fill="#121212"/></pattern>
+      <pattern id="p-hatch-fine" width="5" height="10" patternUnits="userSpaceOnUse"><rect width="1.4" height="10" fill="#121212"/></pattern>
+      <pattern id="p-hatch-h" width="10" height="9" patternUnits="userSpaceOnUse"><rect width="10" height="2.4" fill="#121212"/></pattern>
+      <pattern id="p-dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.8" fill="#121212"/></pattern>
+      <pattern id="p-dots-fine" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><ellipse cx="3" cy="3" rx="1.1" ry="2.2" fill="#121212"/></pattern>
+      <linearGradient id="g-glass" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".3" stop-color="#fff" stop-opacity=".08"/><stop offset=".8" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity=".5"/></linearGradient>
     </defs>
-    <!-- haloed saint emblem -->
+
+    <!-- emblem: haloed saint in a ring -->
     <symbol id="emblem" viewBox="0 0 120 120">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="3"/>
-      <g stroke="currentColor" stroke-width="2" opacity=".8">
-        <path d="M60 10v14M60 96v14M10 60h14M96 60h14M25 25l10 10M85 85l10 10M95 25 85 35M35 85 25 95"/>
+      <g fill="none" stroke="currentColor" stroke-width="2.5">
+        <circle cx="60" cy="60" r="56"/>
+        <path d="M60 24V6M60 24 40 10M60 24 80 10M60 24 22 26M60 24 98 26M60 24 10 48M60 24 110 48" stroke-width="1.6"/>
+        <circle cx="60" cy="32" r="12" fill="var(--emblem-bg,#1d1d1d)"/>
+        <path d="M52 32c0-7 3-11 8-11s8 4 8 11c0 5-3 9-8 9s-8-4-8-9z"/>
+        <path d="M38 113c2-34 8-60 22-68 14 8 20 34 22 68" fill="var(--emblem-bg,#1d1d1d)"/>
+        <path d="M49 72c4 6 10 8 16 6M51 66h12l-4 7v9h4M59 82h-4" stroke-width="2"/>
       </g>
-      <circle cx="60" cy="44" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
-      <path d="M60 33c-7 0-10 6-10 12 0 3 2 6 4 7h12c2-1 4-4 4-7 0-6-3-12-10-12z" fill="currentColor"/>
-      <path d="M36 98c2-22 10-36 24-36s22 14 24 36" fill="none" stroke="currentColor" stroke-width="3"/>
-      <path d="M52 74h16l-5 8v8h4M60 90h-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
     </symbol>
-    <!-- wordmark: emblem + script-like lockup -->
-    <symbol id="wordmark" viewBox="0 0 280 120">
-      <use href="#emblem" x="0" y="4" width="112" height="112"/>
-      <text x="124" y="62" font-family="Limelight, serif" font-size="42" textLength="152" lengthAdjust="spacingAndGlyphs" fill="currentColor">Santioni</text>
-      <text x="148" y="104" font-family="Limelight, serif" font-size="36" textLength="126" lengthAdjust="spacingAndGlyphs" fill="currentColor">Spirits</text>
+    <!-- wordmark: set in the display face, slanted -->
+    <symbol id="wordmark-text" viewBox="0 0 280 120">
+      <g fill="currentColor" font-family="Limelight, serif" transform="skewX(-8)">
+        <text x="30" y="56" font-size="50" textLength="220" lengthAdjust="spacingAndGlyphs">Santioni</text>
+        <text x="60" y="104" font-size="40" textLength="170" lengthAdjust="spacingAndGlyphs">Spirits</text>
+      </g>
+      <path d="M20 66c40-6 100-8 160-4" stroke="currentColor" stroke-width="2" fill="none"/>
     </symbol>
-    <!-- Notturno bottle -->
-    <symbol id="bottle" viewBox="0 0 80 220">
-      <rect x="30" y="2" width="20" height="18" rx="3" fill="#121212"/>
-      <rect x="28" y="18" width="24" height="6" rx="2" fill="#C82924"/>
-      <path d="M32 24h16v26c0 8 22 16 22 36v118c0 8-6 14-14 14H24c-8 0-14-6-14-14V86c0-20 22-28 22-36z" fill="#f4f2ea"/>
-      <path d="M12 120h56v84c0 7-5 12-12 12H24c-7 0-12-5-12-12z" fill="var(--drink,#97F3AD)" opacity=".9"/>
-      <rect x="16" y="104" width="48" height="74" rx="4" fill="#121212"/>
-      <use href="#emblem" x="28" y="110" width="24" height="24" color="var(--drink,#97F3AD)"/>
-      <text x="40" y="150" text-anchor="middle" font-family="Limelight, serif" font-size="10" textLength="40" lengthAdjust="spacingAndGlyphs" fill="#fff">SANTIONI</text>
-      <text x="40" y="164" text-anchor="middle" font-family="'Archivo Black', sans-serif" font-size="6.5" fill="var(--drink,#97F3AD)">NOTTURNO</text>
-      <path d="M32 24h16v26c0 8 22 16 22 36v118c0 8-6 14-14 14H24c-8 0-14-6-14-14V86c0-20 22-28 22-36z" fill="url(#glass)" stroke="#121212" stroke-opacity=".25"/>
+    <!-- small ornaments -->
+    <symbol id="ornament-v" viewBox="0 0 24 64">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M12 2c-6 4-6 10 0 12 6-2 6-8 0-12zM12 14v40M6 24c2 6 10 6 12 0M5 36c3 8 11 8 14 0M8 54h8M6 60h12M12 54l-4 6M12 54l4 6"/>
+      </g>
+    </symbol>
+    <symbol id="ornament-h" viewBox="0 0 40 16">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2 8h12M26 8h12M14 8c2-6 10-6 12 0-2 6-10 6-12 0zM20 3v10M6 4l-4 4 4 4M34 4l4 4-4 4"/></g>
+    </symbol>
+    <symbol id="flourish" viewBox="0 0 60 14">
+      <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 7h38c6 0 8-5 4-5s-4 9 2 9 10-4 12-4"/><path d="M14 7c4-3 8-3 10 0"/></g>
+    </symbol>
+
+    <!-- night sky with brush streaks -->
+    <symbol id="sky-night" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <rect width="1600" height="1000" fill="#252525"/>
+      <g fill="none" stroke="#121212" stroke-linecap="round">
+        <path d="M-50 90C300 40 600 140 900 80s500 40 760 0" stroke-width="22"/>
+        <path d="M-50 170C260 140 520 220 840 170s560 30 800-10" stroke-width="14"/>
+        <path d="M100 260c300-40 600 30 900-10s400 20 650-20" stroke-width="30"/>
+        <path d="M-60 360c260-20 520 40 780 10s520 20 900-20" stroke-width="16"/>
+        <path d="M200 450c200-20 500 10 700 0s300 10 500-10" stroke-width="10"/>
+        <path d="M-40 540c300-30 700 30 1000 0s500 10 700-10" stroke-width="20"/>
+      </g>
+      <g fill="none" stroke="#3a3a3a" stroke-linecap="round" stroke-width="5"><path d="M300 120c200-20 360 0 520-10M980 230c160-10 300 0 460-20M120 400c160-10 300 0 420-10M1000 480c120-6 240 0 360-10"/></g>
+    </symbol>
+    <!-- bank of ink clouds -->
+    <symbol id="cloudbank" viewBox="0 0 1600 360" preserveAspectRatio="none">
+      <path d="M0 360V250c40-10 60-40 100-30 20-30 70-30 90 0 30-20 60 0 70 20 40-10 60 10 80 30 40-50 100-60 140-20 20-50 80-80 130-50 10-60 80-90 130-60 30-50 110-50 140 0 30-30 90-30 110 10 40-40 110-30 130 20 30-20 80-10 90 20 40-30 90-10 110 30 30-20 70-10 80 20 40-20 80 0 90 30 30-10 60 0 70 20 40 0 60 20 70 40V360z" fill="#f4f2ec"/>
+      <g fill="#f4f2ec"><circle cx="560" cy="120" r="14"/><circle cx="1010" cy="140" r="10"/><circle cx="700" cy="80" r="8"/><circle cx="1180" cy="200" r="12"/><circle cx="380" cy="190" r="9"/></g>
+    </symbol>
+    <!-- stone steps -->
+    <symbol id="steps" viewBox="0 0 1000 360" preserveAspectRatio="none">
+      <g stroke="#121212" stroke-width="4" fill="#f4f2ec">
+        <path d="M380 0h240l20 24H360z"/><path d="M350 30h300l26 30H324z"/><path d="M310 66h380l30 36H280z"/><path d="M260 110h480l40 44H220z"/><path d="M200 164h600l50 54H150z"/><path d="M120 230h760l60 62H60z"/><path d="M30 304h940l40 56H-10z"/>
+      </g>
+      <g fill="url(#p-hatch-h)" opacity=".7"><path d="M360 24h280v6H350zM324 60h352v6H310zM280 102h440v8H260zM220 154h560v10H200zM150 218h700v12H120zM60 292h880v12H30z"/></g>
+    </symbol>
+    <!-- maroon wood grain -->
+    <symbol id="grain" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <rect width="1600" height="1000" fill="var(--portal)"/>
+      <g fill="none" stroke="#121212" stroke-linecap="round">
+        <path d="M80 0c-20 300 40 600 0 1000M260 0c30 260-20 520 20 1000M420 0c-30 340 30 640-10 1000M600 0c20 280-30 560 10 1000M790 0c-20 300 30 640-10 1000M960 0c40 260-10 560 30 1000M1140 0c-30 320 20 620-20 1000M1320 0c30 280-20 600 20 1000M1500 0c-20 300 30 620-10 1000" stroke-width="12"/>
+        <path d="M170 0c-10 200 20 500-10 1000M520 0c10 260-20 560 10 1000M880 0c-10 300 20 560-10 1000M1230 0c10 280-20 600 10 1000" stroke-width="5"/>
+      </g>
+    </symbol>
+    <!-- black / white hatched curtain -->
+    <symbol id="curtain" viewBox="0 0 1600 800" preserveAspectRatio="none">
+      <rect width="1600" height="800" fill="#f4f2ec"/>
+      <rect width="1600" height="800" fill="url(#p-hatch)"/>
+      <path d="M0 340c60 40 100-80 180-20s90 120 170 40 110-60 180 0 120 80 200 10 110-90 190-20 100 60 180 10 130-70 200 0 130 50 200-10V800H0z" fill="#121212"/>
+      <path d="M0 520c80-40 140 40 220 0s120-60 220 0 160 20 240-10 160-40 240 0 140 30 240-10 160 10 240 20 100-10 200-20V800H0z" fill="#121212"/>
+    </symbol>
+    <!-- red cathedral interior -->
+    <symbol id="cathedral" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <rect width="1600" height="1000" fill="var(--red)"/>
+      <rect width="1600" height="1000" fill="url(#p-hatch-fine)" opacity=".35"/>
+      <rect x="560" y="80" width="480" height="560" fill="var(--red)"/>
+      <g stroke="#121212" stroke-width="3" fill="none" opacity=".8"><path d="M0 1000 640 640M1600 1000 960 640M300 1000l420-360M1300 1000 880 640M800 640v360M0 820h1600M160 720h1280M380 670h840"/></g>
+      <g class="cols-back"><use href="#column" x="440" y="120" width="70" height="560"/><use href="#column" x="1090" y="120" width="70" height="560"/><use href="#column" x="330" y="90" width="90" height="640"/><use href="#column" x="1180" y="90" width="90" height="640"/></g>
+      <g class="cols-front"><use href="#column" x="160" y="20" width="130" height="860"/><use href="#column" x="1310" y="20" width="130" height="860"/><use href="#column" x="-40" y="-40" width="170" height="1080"/><use href="#column" x="1470" y="-40" width="170" height="1080"/></g>
+      <use href="#pedestal" x="700" y="560" width="200" height="120"/>
+      <use href="#cbottle" x="760" y="520" width="20" height="60" style="--drink:var(--orange)"/>
+      <use href="#cbottle" x="790" y="520" width="20" height="60" style="--drink:var(--mint)"/>
+      <use href="#cbottle" x="820" y="520" width="20" height="60" style="--drink:var(--marsh)"/>
+      <path d="M0 0h1600v120C1300 60 1100 40 800 40S300 60 0 120z" fill="#121212"/>
+      <path d="M0 1000c400-60 1200-60 1600 0" stroke="#121212" stroke-width="80" fill="none"/>
+    </symbol>
+    <!-- column: tinted by --col, shaded with hatching -->
+    <symbol id="column" viewBox="0 0 100 600" preserveAspectRatio="none">
+      <g stroke="#121212" stroke-width="3">
+        <rect x="0" y="0" width="100" height="24" fill="var(--col,var(--red))"/>
+        <path d="M6 24h88l-8 22H14z" fill="var(--col,var(--red))"/>
+        <rect x="16" y="46" width="68" height="510" fill="var(--col,var(--red))"/>
+        <path d="M10 556h80l8 22H2z" fill="var(--col,var(--red))"/>
+        <rect x="0" y="578" width="100" height="22" fill="var(--col,var(--red))"/>
+      </g>
+      <rect x="58" y="46" width="26" height="510" fill="url(#p-hatch-fine)"/>
+      <rect x="72" y="46" width="12" height="510" fill="#121212"/>
+      <rect x="16" y="46" width="8" height="510" fill="url(#p-hatch-fine)" opacity=".6"/>
+    </symbol>
+    <!-- capital close-up -->
+    <symbol id="capital" viewBox="0 0 760 520">
+      <g stroke="#121212" stroke-width="5">
+        <rect x="0" y="0" width="760" height="70" fill="#f4f2ec"/>
+        <path d="M30 70h700c-20 80-60 120-120 130H150C90 190 50 150 30 70z" fill="#f4f2ec"/>
+        <rect x="60" y="200" width="560" height="80" fill="#f4f2ec"/>
+        <rect x="100" y="280" width="480" height="240" fill="#f4f2ec"/>
+      </g>
+      <rect x="0" y="40" width="760" height="30" fill="url(#p-hatch)"/>
+      <path d="M380 70h350c-20 80-60 120-120 130H380z" fill="url(#p-hatch)"/>
+      <rect x="400" y="200" width="220" height="80" fill="url(#p-hatch-fine)"/>
+      <rect x="380" y="280" width="200" height="240" fill="url(#p-hatch)"/>
+      <rect x="520" y="280" width="60" height="240" fill="#121212"/>
+    </symbol>
+    <!-- pedestal table -->
+    <symbol id="pedestal" viewBox="0 0 200 200" preserveAspectRatio="none">
+      <g stroke="#121212" stroke-width="4">
+        <path d="M0 40h200l-14 22H14z" fill="#f4f2ec"/>
+        <rect x="56" y="62" width="88" height="128" fill="#f4f2ec"/>
+        <rect x="40" y="186" width="120" height="14" fill="#f4f2ec"/>
+      </g>
+      <rect x="100" y="62" width="44" height="128" fill="url(#p-hatch-h)"/>
+    </symbol>
+    <!-- comic bottle (flavor via --drink) -->
+    <symbol id="cbottle" viewBox="0 0 80 240">
+      <g stroke="#121212" stroke-width="3">
+        <path d="M28 8c0-6 24-6 24 0v10c4 4 6 8 6 14H22c0-6 2-10 6-14z" fill="#e9e6dd"/>
+        <rect x="14" y="32" width="52" height="200" rx="10" fill="var(--drink,#97F3AD)"/>
+        <rect x="14" y="120" width="52" height="40" fill="#121212"/>
+      </g>
+      <path d="M26 10c8 4 20 4 28 0M24 20h32" stroke="#121212" stroke-width="2"/>
+      <path d="M50 34h12c2 0 4 4 4 8v74H50zM50 162h16v58c0 6-4 10-10 10h-6z" fill="url(#p-hatch-fine)" opacity=".75"/>
+      <text x="40" y="146" text-anchor="middle" fill="#f4f2ec" font-family="Limelight, serif" font-size="13" font-style="italic" transform="skewX(-8)" textLength="34">Santioni</text>
+      <path d="M22 40v70" stroke="#fff" stroke-width="3" opacity=".6" stroke-linecap="round"/>
+    </symbol>
+    <!-- product bottle (flavor via --drink) -->
+    <symbol id="pbottle" viewBox="0 0 120 360">
+      <path d="M38 8h44c6 0 10 6 10 12v20H28V20c0-6 4-12 10-12z" fill="#5a1418"/>
+      <path d="M30 28h60v12H30z" fill="#3c0d10"/>
+      <path d="M44 40h32v24c0 6 22 12 22 30v240c0 10-8 18-18 18H40c-10 0-18-8-18-18V94c0-18 22-24 22-30z" fill="#f2efe9" opacity=".55"/>
+      <path d="M24 130h72v204c0 10-8 18-18 18H42c-10 0-18-8-18-18z" fill="var(--drink,#97F3AD)"/>
+      <rect x="22" y="222" width="76" height="36" fill="#5a1418"/>
+      <text x="60" y="246" text-anchor="middle" font-family="Limelight, serif" font-size="15" font-style="italic" fill="#d9b874" transform="skewX(-6)" textLength="54">Santioni</text>
+      <path d="M44 40h32v24c0 6 22 12 22 30v240c0 10-8 18-18 18H40c-10 0-18-8-18-18V94c0-18 22-24 22-30z" fill="url(#g-glass)"/>
+      <g stroke="#fff" stroke-opacity=".25" stroke-width="1.2"><path d="M34 100v230M44 96v240M54 94v244M66 94v244M76 96v240M86 100v230"/></g>
+    </symbol>
+    <!-- martini glass (flavor via --drink) -->
+    <symbol id="glass" viewBox="0 0 200 200">
+      <path d="M10 14h180L100 104z" fill="#fff" fill-opacity=".25" stroke="#9a9a9a" stroke-width="2"/>
+      <path d="M26 28h148l-74 66z" fill="var(--drink,#97F3AD)"/>
+      <path d="M26 28h148l-14 12H40z" fill="#fff" opacity=".35"/>
+      <path d="M100 104v80M66 192c10-8 58-8 68 0" stroke="#9a9a9a" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M22 18l70 78" stroke="#fff" stroke-width="3" opacity=".7"/>
+    </symbol>
+    <!-- figures -->
+    <symbol id="saint-hood" viewBox="0 0 200 400">
+      <path d="M100 18c-30 0-46 30-42 66-18 26-22 86-18 146-2 60-10 120-15 160h150c-5-50-10-110-20-170 5-60 0-110-15-136 5-36-10-66-40-66z" fill="var(--robe,#b39c6f)" stroke="#121212" stroke-width="5"/>
+      <path d="M78 60c2-15 17-22 30-15-8 15-13 35-16 53-7-8-14-23-14-38z" fill="#121212"/>
+      <path d="M130 90c20 40 25 130 35 300h-25c0-90-5-190-20-270z" fill="url(#p-hatch)"/>
+      <path d="M70 140c10 50 30 90 50 110M60 300c20 20 60 30 90 20" stroke="#121212" stroke-width="4" fill="none"/>
+    </symbol>
+    <symbol id="robe-low" viewBox="0 0 300 470">
+      <path d="M60 0c-10 120-40 260-60 400h300C280 260 250 120 240 0z" fill="var(--robe,#b39c6f)" stroke="#121212" stroke-width="5"/>
+      <path d="M200 0c10 120 30 260 50 400h50C280 260 250 120 240 0z" fill="url(#p-hatch)"/>
+      <path d="M110 30c-10 120-20 240-40 360M160 20c0 140 10 260 20 380" stroke="#121212" stroke-width="4" fill="none"/>
+      <path d="M90 400c0 30 20 50 40 50s30-10 40-30" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+      <path d="M0 400h300" stroke="#121212" stroke-width="5"/>
+    </symbol>
+    <symbol id="saint-profile" viewBox="0 0 400 470">
+      <path d="M150 40c70-40 170-10 180 80 5 60-10 140-30 210h-70c10-70 0-130-20-160-10-40-35-60-60-60z" fill="#121212"/>
+      <path d="M150 110c25 0 50 20 60 60 10 30 15 70 5 100-15 20-40 30-55 20-5-20-10-28-20-32-5-8 2-14-2-20-6-2-10-10-4-16-8-8-12-16-2-22-6-10 0-20 8-22-2-18 0-43 10-68z" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+      <path d="M160 175c8-4 16-4 22 0M175 230c-8 6-16 6-22 2" stroke="#121212" stroke-width="4" fill="none"/>
+      <path d="M150 260c20 20 50 20 70 0v40c-20 10-50 10-70 0z" fill="url(#p-hatch)"/>
+      <path d="M60 470c10-90 70-140 160-140s140 50 160 140z" fill="var(--robe,#b39c6f)" stroke="#121212" stroke-width="5"/>
+      <path d="M260 340c30 30 50 80 60 130h60c-20-90-60-130-120-130z" fill="url(#p-hatch)"/>
+    </symbol>
+    <symbol id="saint-back" viewBox="0 0 240 420">
+      <path d="M120 70c-40 0-60 30-65 70-15 80-25 190-35 270h200c-10-80-20-190-35-270-5-40-25-70-65-70z" fill="var(--robe,#b39c6f)" stroke="#121212" stroke-width="5"/>
+      <path d="M160 120c10 80 25 190 40 290h20c-10-80-20-190-35-270-5-10-10-20-25-20z" fill="url(#p-hatch)"/>
+      <path d="M120 10c-30 0-42 30-40 70-2 40-8 70-10 95 25-10 75-10 100 0-2-25-8-55-10-95 2-40-10-70-40-70z" fill="#121212"/>
+      <path class="hair-wind" d="M155 40c30-10 60 0 80-14-10 20-40 30-70 30" fill="#121212"/>
+      <path d="M90 200c10 60 0 140-10 200M140 210c0 60 10 130 20 190" stroke="#121212" stroke-width="4" fill="none"/>
+    </symbol>
+    <symbol id="saint-silhouette" viewBox="0 0 280 460">
+      <path d="M140 20c-30 0-44 26-42 60-30 20-50 70-60 140-10 80-20 160-30 240h264c-10-80-20-160-30-240-10-70-30-120-60-140 2-34-12-60-42-60z" fill="#121212"/>
+      <path d="M170 40c40-20 80 0 110-20-14 30-60 40-100 46M175 60c30 0 60 20 90 10" stroke="#121212" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="saint-front" viewBox="0 0 200 420">
+      <path d="M100 10c-24 0-36 24-34 56-2 26-8 50-12 70h92c-4-20-10-44-12-70 2-32-10-56-34-56z" fill="#121212"/>
+      <path d="M84 40c0-10 8-16 16-16s16 6 16 16v38c0 12-8 20-16 20s-16-8-16-20z" fill="#f4f2ec" stroke="#121212" stroke-width="4"/>
+      <path d="M90 82c6 8 14 8 20 0v20H90z" fill="url(#p-hatch)"/>
+      <path d="M100 110c-40 0-70 20-80 70-10 70-14 160-20 230h200c-6-70-10-160-20-230-10-50-40-70-80-70z" fill="var(--robe,#b39c6f)" stroke="#121212" stroke-width="5"/>
+      <path d="M130 120c20 20 30 60 36 110 4 60 8 120 14 180h20c-6-70-10-160-20-230-6-30-20-50-50-60z" fill="url(#p-hatch)"/>
+      <path d="M100 110v300M60 200c20 10 60 10 80 0" stroke="#121212" stroke-width="4" fill="none"/>
+      <g class="held-glass"><path d="M120 196c6-4 14-4 18 2l-2 16c-4 4-10 4-14 0z" fill="#f4f2ec" stroke="#121212" stroke-width="3"/><path d="M118 180h28l-14 16z" fill="var(--drink,#97F3AD)" stroke="#121212" stroke-width="2"/></g>
+    </symbol>
+    <symbol id="saint-float" viewBox="0 0 300 420">
+      <path d="M150 30c-20 0-30 16-30 34s12 30 30 30 30-12 30-30-10-34-30-34z" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+      <path d="M120 40c-20-30 10-50 40-40 30-10 60 20 40 50 30 0 50-20 70-10-30 10-50 30-80 30" fill="#121212"/>
+      <path d="M150 100c-40 10-60 40-70 90-10 50-30 100-60 150 40 10 80 0 110-20 20 30 60 50 100 40-20-50-30-110-30-160 0-60-20-100-50-100z" fill="var(--drink,#97F3AD)" stroke="#121212" stroke-width="5"/>
+      <path d="M190 150c40-20 70-10 100-30-10 40-50 50-90 60z" fill="var(--drink,#97F3AD)" stroke="#121212" stroke-width="5"/>
+      <path d="M110 180c10 40 10 90 0 140M160 160c10 50 20 110 40 160" stroke="#121212" stroke-width="4" fill="none"/>
+      <path d="M150 360c0 20-10 40-20 50M200 360c10 20 20 40 20 56" stroke="#121212" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M90 160c-30 0-50-20-70-40" stroke="#121212" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <!-- swirling beam of light -->
+    <symbol id="vortex" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <rect width="1600" height="1000" fill="#121212"/>
+      <path d="M560 -40C500 300 620 640 520 1040h560c-100-400 20-740-40-1080z" fill="#f4f2ec"/>
+      <g fill="none" stroke="#121212" stroke-linecap="round">
+        <path d="M600 120c160-30 300-20 420 10M580 260c180-40 320-10 460 20M560 420c200-30 340 0 480 30M570 600c180-20 320 10 460 40M590 780c160-20 300 0 420 30" stroke-width="10"/>
+        <path d="M640 180c120-10 240 0 320 20M620 340c140-20 260 0 360 20M620 520c140-10 260 10 360 30M640 700c120-10 220 0 300 20" stroke-width="4"/>
+      </g>
+      <g fill="none" stroke="#f4f2ec" stroke-linecap="round" stroke-width="6">
+        <path d="M120 160c140 20 240 60 360 120M80 420c160 0 260 30 400 80M200 700c120-20 220-10 320 20M1500 200c-140 20-260 70-380 130M1540 520c-160 0-280 20-420 60M1400 800c-120-20-220-10-320 20M300 60l140 40M1250 80l-140 50"/>
+      </g>
+    </symbol>
+    <!-- flying stone -->
+    <symbol id="rock" viewBox="0 0 160 150">
+      <path d="M20 60C10 30 50 4 90 10s70 40 60 80-50 60-90 50S30 90 20 60z" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+      <path d="M80 20c30 10 60 40 56 74-4 30-40 46-70 40 30-10 50-30 46-60-2-24-14-40-32-54z" fill="url(#p-hatch)"/>
+      <path d="M40 70c20-10 40-10 60 4" stroke="#121212" stroke-width="4" fill="none"/>
+    </symbol>
+    <!-- ring of white columns -->
+    <symbol id="colosseum" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <rect width="1600" height="1000" fill="var(--red)"/>
+      <g style="--col:#f4f2ec">
+        <use href="#column" x="300" y="230" width="60" height="330"/><use href="#column" x="420" y="240" width="60" height="320"/><use href="#column" x="1120" y="240" width="60" height="320"/><use href="#column" x="1240" y="230" width="60" height="330"/>
+        <use href="#column" x="140" y="180" width="90" height="440"/><use href="#column" x="1370" y="180" width="90" height="440"/>
+        <use href="#column" x="-20" y="120" width="120" height="560"/><use href="#column" x="1500" y="120" width="120" height="560"/>
+      </g>
+      <path d="M0 160c300-60 500-80 800-80s500 20 800 80v60c-300-50-500-70-800-70S300 170 0 220z" fill="#f4f2ec" stroke="#121212" stroke-width="5"/>
+      <path d="M0 200c300-50 500-70 800-70s500 20 800 70" stroke="url(#p-hatch)" stroke-width="20" fill="none"/>
+      <path d="M0 640c400-60 1200-60 1600 0v360H0z" fill="#f4f2ec"/>
+      <path d="M0 640c400-60 1200-60 1600 0" stroke="#121212" stroke-width="5" fill="none"/>
+      <rect y="700" width="1600" height="300" fill="url(#p-hatch-h)" opacity=".55"/>
     </symbol>
   </svg>
 

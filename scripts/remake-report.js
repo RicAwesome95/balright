@@ -19,7 +19,7 @@ const OUT = path.resolve(ROOT, process.argv.includes('--out') ? process.argv[pro
 const SPEC = {
   title: 'Santioni Spirits | Cocktails to Indulge Now, Atone Later',
   description: 'Choose pleasure with Santioni Spirits: where intentional indulgence meets effortless enjoyment. Refined, ready-to-pour cocktails to help you savor the moment.',
-  colors: { red: 'rgb(200, 41, 36)', ink: 'rgb(18, 18, 18)' },
+  colors: { red: 'rgb(200, 41, 36)', ink: 'rgb(18, 18, 18)', paper: 'rgb(239, 238, 233)' },
   // fluid type scale from the original stylesheet, evaluated at 1440px wide
   typeAt1440: { '.RetailUI .heading3': 82, '.pour-heading-probe': null, '.heading2-probe': 159.2 },
   copy: [
@@ -46,8 +46,8 @@ const SPEC = {
     'a beam of light engulfs him, swirling with mint, chocolate, and cream',
     'The saint gently floats back to the floor, one foot after the other.',
     'The columns and roof begin to break apart and lift away, revealing a deep red sky.',
-    // collection
-    'Santioni', 'Spirits', 'An ode to the night, your night', 'Notturno Collection',
+    // taste + collection poster
+    'Indulge now', 'Atone later', 'Santioni', 'Spirits', 'Notturno Collection',
     // products
     'Orange Chocolate & Cream', 'Mint Chocolate & Cream', 'Marshmallow Coffee & Cream',
     // taste
@@ -56,7 +56,7 @@ const SPEC = {
     // pour ritual
     'The night starts after dinner', 'Chill your spirit', 'Shake your spirit', 'Let the night play on', 'Pour your spirit', 'What happens next is up to you',
     // retail
-    'Our Retailers', 'Select Houses Forthcoming',
+    'Select Houses Forthcoming',
     // footer
     'Instagram', 'indulge@santionispirits.com', 'Active Theory', 'Plan8', 'Legal',
     // cookie banner
@@ -163,14 +163,16 @@ const norm = (s) => s.replace(/\s+/g, ' ').replace(/[’]/g, "'").trim().toLower
   const retail = await page.$eval('#retail .heading3', (e) => ({ fs: parseFloat(getComputedStyle(e).fontSize), cw: e.closest('.stack').clientWidth }));
   const retailExpected = Math.max(30, Math.min(0.16 * retail.cw, 82));
   check('Design', 'Retail heading3 follows original container-query scale', Math.abs(retail.fs - retailExpected) < 1, `${retail.fs}px vs ${retailExpected.toFixed(1)}px`);
-  const bodyBold = await page.$eval('.forthcoming', (e) => parseFloat(getComputedStyle(e).fontSize));
+  const bodyBold = await page.$eval('.RetailUI .header-row-left', (e) => parseFloat(getComputedStyle(e).fontSize));
   check('Design', 'body-bold 15px at desktop', Math.abs(bodyBold - 15) < 0.5, `${bodyBold}px`);
   const footerBg = await page.$eval('#footer', (e) => getComputedStyle(e).backgroundColor);
-  check('Design', 'Brand red #C82924 on footer', footerBg === SPEC.colors.red, footerBg);
-  const quadColor = await page.$eval('.quad-line', (e) => getComputedStyle(e).color);
-  check('Design', 'Collection lines in brand red', quadColor === SPEC.colors.red, quadColor);
+  check('Design', 'Ink #121212 footer', footerBg === SPEC.colors.ink, footerBg);
+  const posterColor = await page.$eval('.poster-head', (e) => getComputedStyle(e).color);
+  check('Design', 'Collection poster header in brand red', posterColor === SPEC.colors.red, posterColor);
+  const redBg = await page.$eval('#products', (e) => getComputedStyle(e).backgroundColor);
+  check('Design', 'Products on brand red', redBg === SPEC.colors.red, redBg);
   const bodyBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  check('Design', 'Ink #121212 page background', bodyBg === SPEC.colors.ink, bodyBg);
+  check('Design', 'Paper page background behind the comic panels', bodyBg === SPEC.colors.paper, bodyBg);
 
   // age gate: No -> denied (separate context so state stays clean)
   {
@@ -193,15 +195,9 @@ const norm = (s) => s.replace(/\s+/g, ' ').replace(/[’]/g, "'").trim().toLower
   await page.click('[data-cookie="accept"]');
   check('Interaction', 'Cookie "Accept" dismisses banner', !(await page.isVisible('#cookie-banner')));
 
-  // canvas renders something non-uniform
-  const canvasOk = await page.evaluate(() => {
-    const c = document.getElementById('story-canvas');
-    const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
-    let min = 255, max = 0;
-    for (let i = 0; i < d.length; i += 4 * 997) { min = Math.min(min, d[i]); max = Math.max(max, d[i]); }
-    return max - min > 10;
-  });
-  check('Design', 'Story scene canvas renders', canvasOk);
+  // comic panels get their tilted, inked frames
+  const framed = await page.$$eval('svg[data-quad] > g[clip-path]', (n) => n.length);
+  check('Design', 'Story panels are clipped and inked', framed >= 10, `${framed} framed panels`);
 
   // scroll to selection, choose orange
   await page.$eval('.chapter--select', (e) => e.scrollIntoView({ block: 'center' }));
