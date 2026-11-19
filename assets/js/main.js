@@ -168,9 +168,9 @@
     // layers deeper in the drawing move further with the mouse, like the original's depth
     const layers = Array.from(art.children);
     layers.forEach((layer, k) => {
-      if (k === 0) return;
+      if (k === 0) { layer.setAttribute('data-bg', ''); return; }
       layer.setAttribute('data-depth', '');
-      layer.style.setProperty('--d', String(Math.round(4 + (k / Math.max(1, layers.length - 1)) * 18)));
+      layer.style.setProperty('--d', String(Math.round(6 + (k / Math.max(1, layers.length - 1)) * 26)));
     });
   });
 
@@ -242,6 +242,7 @@
   const parallax = $$('[data-speed]').map((el) => ({ el, speed: parseFloat(el.dataset.speed) || 0, anchor: el.closest('.chapter') || el.parentElement }));
   const panels = $$('.panel').map((el) => ({ el, rx: 0, ry: 0, lift: 0, px: 0, py: 0 }));
   const crumbleTitle = $('[data-scene="crumble"] .title-one');
+  const bleeds = $$('.bleed');
   const collection = $('#collection');
   const poster = $('.collection-ui__text-quad');
   const rail = $('.ScrollRail');
@@ -363,17 +364,27 @@
         const hovered = finePointer && hoverPanel === p.el;
         const lx = hovered ? clamp(((ptrX - r.left) / r.width) * 2 - 1, -1, 1) : mx;
         const ly = hovered ? clamp(((ptrY - r.top) / r.height) * 2 - 1, -1, 1) : my;
-        p.rx = lerp(p.rx, prog * 14 - ly * (hovered ? 6 : 2.5), kp);
-        p.ry = lerp(p.ry, lx * (hovered ? 8 : 3), kp);
+        p.rx = lerp(p.rx, prog * 26 - ly * (hovered ? 10 : 6), kp);
+        p.ry = lerp(p.ry, lx * (hovered ? 14 : 8), kp);
         p.lift = lerp(p.lift, hovered ? 1 : 0, kp);
         p.px = lerp(p.px, -lx, kp);
         p.py = lerp(p.py, -ly, kp);
         const st = p.el.style;
         st.setProperty('--rx', `${p.rx.toFixed(2)}deg`);
         st.setProperty('--ry', `${p.ry.toFixed(2)}deg`);
+        // farther away above and below the middle of the screen, nearer when hovered
+        st.setProperty('--pz', `${(p.lift * 70 - Math.abs(prog) * 260).toFixed(1)}px`);
+        st.setProperty('--sp', prog.toFixed(3));
         st.setProperty('--lift', p.lift.toFixed(3));
         st.setProperty('--px', p.px.toFixed(3));
         st.setProperty('--pyy', p.py.toFixed(3));
+      });
+
+      // full-bleed scenes: their layers drift at different rates as they scroll through
+      bleeds.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -H * 0.5 || r.top > H * 1.5) return;
+        el.style.setProperty('--sp', clamp((r.top + r.height / 2 - H / 2) / H, -1.5, 1.5).toFixed(3));
       });
 
       if (crumbleTitle) {

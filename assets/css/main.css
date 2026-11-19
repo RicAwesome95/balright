@@ -126,12 +126,19 @@ body.is-gated .SiteLogo,body.is-gated .AudioToggle{opacity:0;pointer-events:none
 .experience{position:relative;overflow:hidden}
 .chapter{position:relative}
 .page{display:flex;flex-direction:column;align-items:center;gap:clamp(24px,4vw,56px);padding:clamp(60px,12vh,140px) clamp(16px,6vw,96px)}
-.page{perspective:1400px}
-.panel{position:relative;width:min(78vw,1080px);transform:translate3d(0,var(--py,0px),0) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) rotate(var(--rot,0deg)) scale(calc(1 + var(--lift,0) * .025));transform-style:preserve-3d;will-change:transform;filter:drop-shadow(0 calc(var(--lift,0) * 26px) calc(var(--lift,0) * 22px) rgba(18,18,18,calc(var(--lift,0) * .28)))}
-.panel svg [data-depth]{translate:calc(var(--px,0) * var(--d) * 1px) calc(var(--pyy,0) * var(--d) * .6px)}
-.bleed-art{translate:calc(var(--mx,0) * -16px) calc(var(--my,0) * -10px);scale:1.05}
-.chapter--title .title-one{translate:calc(var(--mx,0) * 10px) calc(var(--my,0) * 6px)}
-.chapter--title .clouds{translate:calc(var(--mx,0) * -26px) 0;scale:1.06 1}
+.page,.bleed{perspective:900px;perspective-origin:50% 45%}
+.panel{position:relative;width:min(78vw,1080px);transform:translate3d(0,var(--py,0px),var(--pz,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) rotate(var(--rot,0deg));will-change:transform;filter:drop-shadow(0 calc(var(--lift,0) * 26px) calc(var(--lift,0) * 22px) rgba(18,18,18,calc(var(--lift,0) * .28)))}
+/* depth inside a panel: the backdrop sits far behind the frame, each drawn layer nearer than the last,
+   so the frame reads as a window and the scene moves behind it with the mouse and the scroll */
+.panel svg [data-depth]{translate:calc(var(--px,0) * var(--d) * 1.7px) calc(var(--pyy,0) * var(--d) * 1px + var(--sp,0) * var(--d) * -2.6px)}
+.panel svg [data-bg]{transform-box:view-box;transform-origin:50% 50%;scale:1.14;translate:calc(var(--px,0) * -14px) calc(var(--pyy,0) * -8px + var(--sp,0) * 34px)}
+.bleed-art{translate:calc(var(--mx,0) * -34px) calc(var(--my,0) * -20px + var(--sp,0) * 70px);scale:1.14}
+.bleed .parallax-g{translate:calc(var(--mx,0) * -60px) calc(var(--my,0) * -34px)}
+.chapter--title .title-one{translate:calc(var(--mx,0) * 22px) calc(var(--my,0) * 12px + var(--sp,0) * -160px)}
+.chapter--title .bleed-art{translate:calc(var(--mx,0) * -24px) calc(var(--my,0) * -14px + var(--sp,0) * 120px)}
+.chapter--title .clouds{translate:calc(var(--mx,0) * -70px) calc(var(--sp,0) * -220px);scale:1.12 1}
+[data-scene="crumble"] .title-one{translate:calc(var(--mx,0) * 26px) calc(var(--my,0) * 14px)}
+.floater--land{translate:calc(var(--mx,0) * 40px) calc(var(--my,0) * 22px)}
 .panel svg{width:100%;height:auto;overflow:visible}
 .panel>svg{opacity:0;transform:translateY(70px) scale(.94);transition:opacity 1s var(--ease),transform 1.3s var(--ease-out)}
 .panel.in>svg{opacity:1;transform:none}
