@@ -70,6 +70,18 @@
   const audioBtn = $('.AudioToggle');
   audioBtn.addEventListener('click', () => audioBtn.setAttribute('aria-pressed', String(audio.toggle())));
 
+  function splitWords(p) {
+    const words = p.textContent.trim().split(/\s+/);
+    p.textContent = '';
+    words.forEach((w, i) => {
+      const span = document.createElement('span');
+      span.className = 'w';
+      span.style.setProperty('--i', String(i));
+      span.textContent = w;
+      p.append(span, ' ');
+    });
+  }
+
   /* ---------------- bottle choice ---------------- */
   function selectBottle(n) {
     selectedBottle = n;
@@ -77,7 +89,7 @@
     document.documentElement.style.setProperty('--drink', f.color);
     $$('.bottle-pick').forEach((b) => b.setAttribute('aria-checked', String(+b.dataset.bottle === n)));
     const copy = $('#drink-copy');
-    if (copy) copy.textContent = f.copy;
+    if (copy) { copy.textContent = f.copy; if (copy.dataset.split) splitWords(copy); }
     audio.click();
   }
   $$('.bottle-pick').forEach((b) => {
@@ -149,10 +161,21 @@
     const frame = poly.cloneNode();
     frame.setAttribute('fill', 'none');
     frame.setAttribute('stroke', '#121212');
-    frame.setAttribute('stroke-width', '7');
+    frame.setAttribute('stroke-width', '8');
     frame.setAttribute('stroke-linejoin', 'round');
+    frame.setAttribute('filter', 'url(#f-rough)');
     svg.append(defs, art, frame);
+    // layers deeper in the drawing move further with the mouse, like the original's depth
+    const layers = Array.from(art.children);
+    layers.forEach((layer, k) => {
+      if (k === 0) return;
+      layer.setAttribute('data-depth', '');
+      layer.style.setProperty('--d', String(Math.round(4 + (k / Math.max(1, layers.length - 1)) * 18)));
+    });
   });
+
+  /* ---------------- captions: pop in, words appear one by one ---------------- */
+  $$('.narration').forEach((p) => { splitWords(p); p.dataset.split = '1'; });
   $$('.slide-in[data-from]').forEach((el) => el.style.setProperty('--from', el.dataset.from));
 
   /* ---------------- reveals ---------------- */
@@ -213,50 +236,199 @@
   });
   go(1);
 
-  /* ---------------- scroll-linked motion: parallax, poster tilt, rail ---------------- */
+  /* ---------------- motion loop: smooth scroll, mouse depth, 3D panels, holds, cursor badge ---------------- */
+  const root = document.documentElement;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const parallax = $$('[data-speed]').map((el) => ({ el, speed: parseFloat(el.dataset.speed) || 0, anchor: el.closest('.chapter') || el.parentElement }));
+  const panels = $$('.panel').map((el) => ({ el, rx: 0, ry: 0, lift: 0, px: 0, py: 0 }));
   const crumbleTitle = $('[data-scene="crumble"] .title-one');
   const collection = $('#collection');
   const poster = $('.collection-ui__text-quad');
   const rail = $('.ScrollRail');
   const logo = $('.SiteLogo');
-  let ticking = false;
+  const badge = $('.CursorBadge');
+  const badgeLabel = $('.label', badge);
 
-  function onScroll() {
+  // smooth (inertia) scrolling for wheels; keyboard, scrollbar and touch stay native
+  const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
+  let scrollTarget = window.scrollY, scrollCur = window.scrollY, smoothing = false;
+  const smoothOK = !reduceMotion;
+  if (smoothOK) {
+    window.addEventListener('wheel', (e) => {
+      if (body.classList.contains('is-gated') || body.classList.contains('is-loading') || e.ctrlKey) return;
+      e.preventDefault();
+      if (!smoothing) scrollCur = scrollTarget = window.scrollY;
+      const unit = e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? window.innerHeight : 1;
+      scrollTarget = clamp(scrollTarget + e.deltaY * unit, 0, maxScroll());
+      smoothing = true;
+    }, { passive: false });
+  }
+  function scrollToY(y) {
+    if (!smoothOK) { window.scrollTo(0, y); return; }
+    if (!smoothing) scrollCur = window.scrollY;
+    scrollTarget = clamp(y, 0, maxScroll());
+    smoothing = true;
+  }
+  $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    const el = id.length > 1 ? $(id) : null;
+    if (!el) return;
+    e.preventDefault();
+    scrollToY(id === '#top' ? 0 : el.getBoundingClientRect().top + window.scrollY);
+    if (a.classList.contains('skip-link')) { el.setAttribute('tabindex', '-1'); el.focus({ preventScroll: true }); }
+  }));
+
+  // pointer
+  let mxT = 0, myT = 0, mx = 0, my = 0, ptrX = -200, ptrY = -200, bx = -200, by = -200, bs = 0;
+  let hoverPanel = null, cursorText = '', pressed = false;
+  const lookUnder = (el) => {
+    hoverPanel = el && el.closest ? el.closest('.panel') : null;
+    const c = el && el.closest ? el.closest('[data-cursor]') : null;
+    cursorText = c ? c.dataset.cursor : '';
+  };
+  window.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    ptrX = e.clientX; ptrY = e.clientY;
+    mxT = (e.clientX / window.innerWidth) * 2 - 1;
+    myT = (e.clientY / window.innerHeight) * 2 - 1;
+    if (!pressed) lookUnder(e.target);
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', () => { hoverPanel = null; cursorText = ''; });
+  window.addEventListener('scroll', () => {
+    if (!smoothing) scrollCur = scrollTarget = window.scrollY;
+    // what sits under a still mouse changes as the page moves
+    if (!pressed && ptrX > 0) lookUnder(document.elementFromPoint(ptrX, ptrY));
+  }, { passive: true });
+
+  // press-and-hold scenes: the hand reaches, the bottle pours, the beam lifts
+  const holds = $$('[data-hold]').map((el) => ({ el, kind: el.dataset.hold, on: false, v: 0, hx: 0, hy: 0 }));
+  let pourFill = 0;
+  holds.forEach((h) => {
+    const stop = () => { h.on = false; pressed = false; };
+    h.el.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      h.on = true; pressed = true;
+      try { h.el.setPointerCapture(e.pointerId); } catch (err) { /* not capturable */ }
+    });
+    h.el.addEventListener('pointerup', stop);
+    h.el.addEventListener('pointercancel', stop);
+    h.el.addEventListener('lostpointercapture', stop);
+    h.el.addEventListener('keydown', (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); h.on = true; } });
+    h.el.addEventListener('keyup', (e) => { if (e.key === ' ' || e.key === 'Enter') h.on = false; });
+  });
+  const armHold = holds.find((h) => h.kind === 'hand');
+  const arm = $('.arm');
+
+  // logo and audio bars switch to ink over paper, white over night and red
+  const onLight = (x, y) => {
+    const el = document.elementFromPoint(x, y);
+    const sec = el && el.closest('.chapter, section, footer');
+    if (sec && sec.matches('.chapter--title')) return y > sec.getBoundingClientRect().bottom - window.innerHeight * 0.28;
+    return !!sec && (sec.matches('.page:not(.bleed)') || sec.id === 'retail');
+  };
+  const ease = (base, dt) => 1 - Math.pow(base, dt);
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
     const H = window.innerHeight;
+
+    if (smoothing) {
+      scrollCur = lerp(scrollCur, scrollTarget, ease(0.0009, dt));
+      if (Math.abs(scrollTarget - scrollCur) < 0.5) { scrollCur = scrollTarget; smoothing = false; }
+      window.scrollTo(0, scrollCur);
+    }
+
     if (!reduceMotion) {
+      mx = lerp(mx, finePointer ? mxT : 0, ease(0.002, dt));
+      my = lerp(my, finePointer ? myT : 0, ease(0.002, dt));
+      root.style.setProperty('--mx', mx.toFixed(3));
+      root.style.setProperty('--my', my.toFixed(3));
+
       parallax.forEach(({ el, speed, anchor }) => {
         const r = anchor.getBoundingClientRect();
         if (r.bottom < -H || r.top > 2 * H) return;
         el.style.setProperty('--py', `${(-(r.top + r.height / 2 - H / 2) * speed).toFixed(1)}px`);
       });
+
+      // panels are cards in perspective: tilted back as they come up, flat mid-screen,
+      // tilted forward as they leave; they lean toward the mouse and lift when hovered
+      const kp = ease(0.0005, dt);
+      panels.forEach((p) => {
+        const r = p.el.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > H + 100) return;
+        const prog = clamp((r.top + r.height / 2 - H / 2) / H, -1.2, 1.2);
+        const hovered = finePointer && hoverPanel === p.el;
+        const lx = hovered ? clamp(((ptrX - r.left) / r.width) * 2 - 1, -1, 1) : mx;
+        const ly = hovered ? clamp(((ptrY - r.top) / r.height) * 2 - 1, -1, 1) : my;
+        p.rx = lerp(p.rx, prog * 14 - ly * (hovered ? 6 : 2.5), kp);
+        p.ry = lerp(p.ry, lx * (hovered ? 8 : 3), kp);
+        p.lift = lerp(p.lift, hovered ? 1 : 0, kp);
+        p.px = lerp(p.px, -lx, kp);
+        p.py = lerp(p.py, -ly, kp);
+        const st = p.el.style;
+        st.setProperty('--rx', `${p.rx.toFixed(2)}deg`);
+        st.setProperty('--ry', `${p.ry.toFixed(2)}deg`);
+        st.setProperty('--lift', p.lift.toFixed(3));
+        st.setProperty('--px', p.px.toFixed(3));
+        st.setProperty('--pyy', p.py.toFixed(3));
+      });
+
       if (crumbleTitle) {
         const r = crumbleTitle.parentElement.getBoundingClientRect();
         crumbleTitle.style.setProperty('--py', `${((r.top + r.height / 2 - H / 2) * 0.25).toFixed(1)}px`);
       }
       const c = collection.getBoundingClientRect();
-      const t = clamp((H - c.top) / (H + c.height), 0, 1);
-      poster.style.setProperty('--tx', `${lerp(14, -6, t).toFixed(2)}deg`);
-      poster.style.setProperty('--ty', `${lerp(-16, 10, t).toFixed(2)}deg`);
+      if (c.bottom > 0 && c.top < H) {
+        const t = clamp((H - c.top) / (H + c.height), 0, 1);
+        poster.style.setProperty('--tx', `${(lerp(14, -6, t) - my * 5).toFixed(2)}deg`);
+        poster.style.setProperty('--ty', `${(lerp(-16, 10, t) + mx * 7).toFixed(2)}deg`);
+      }
     }
-    // logo and audio bars switch to ink over paper, white over night and red
-    const onLight = (x, y) => {
-      const el = document.elementFromPoint(x, y);
-      const sec = el && el.closest('.chapter, section, footer');
-      if (sec && sec.matches('.chapter--title')) return y > sec.getBoundingClientRect().bottom - window.innerHeight * 0.28;
-      return !!sec && (sec.matches('.page:not(.bleed)') || sec.id === 'retail');
-    };
+
+    // holds
+    holds.forEach((h) => {
+      h.v = lerp(h.v, h.on ? 1 : 0, ease(h.on ? 0.02 : 0.001, dt));
+      h.el.style.setProperty('--hold', h.v.toFixed(3));
+      if (h.kind === 'pour') {
+        if (h.on) pourFill = Math.min(1, pourFill + dt * 0.4);
+        h.el.style.setProperty('--fill', pourFill.toFixed(3));
+      }
+    });
+    if (armHold && arm) {
+      const r = armHold.el.getBoundingClientRect();
+      const tx = armHold.on ? clamp(ptrX - (r.left + r.width * 0.42), -500, 300) : 0;
+      const ty = armHold.on ? clamp(ptrY - (r.top + r.height * 0.42), -300, 300) : 0;
+      armHold.hx = lerp(armHold.hx, tx, ease(0.003, dt));
+      armHold.hy = lerp(armHold.hy, ty, ease(0.003, dt));
+      arm.style.setProperty('--hx', `${armHold.hx.toFixed(1)}px`);
+      arm.style.setProperty('--hy', `${armHold.hy.toFixed(1)}px`);
+    }
+
+    // cursor badge trails the mouse and shows the prompt for what it is over
+    if (finePointer) {
+      bx = lerp(bx, ptrX, ease(0.00002, dt));
+      by = lerp(by, ptrY, ease(0.00002, dt));
+      const show = !!cursorText && !body.classList.contains('is-gated');
+      if (show && badgeLabel.textContent !== cursorText) badgeLabel.textContent = cursorText;
+      const active = holds.find((h) => h.el.dataset.cursor === cursorText);
+      bs = lerp(bs, show ? (pressed ? 0.86 : 1) : 0, ease(0.0005, dt));
+      badge.style.setProperty('--bs', bs.toFixed(3));
+      badge.style.setProperty('--bx', `${bx.toFixed(1)}px`);
+      badge.style.setProperty('--by', `${by.toFixed(1)}px`);
+      badge.style.setProperty('--hold', active ? (active.kind === 'pour' ? pourFill : active.v).toFixed(3) : '0');
+    }
+
     logo.classList.toggle('on-light', onLight(4, 44));
     audioBtn.classList.toggle('on-light', onLight(window.innerWidth - 90, H - 46));
-    const max = document.documentElement.scrollHeight - H;
+    const max = maxScroll();
     rail.style.setProperty('--progress', max > 0 ? (window.scrollY / max).toFixed(4) : 0);
     updateNav();
-    ticking = false;
+    requestAnimationFrame(frame);
   }
-  function requestTick() { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }
-  window.addEventListener('scroll', requestTick, { passive: true });
-  window.addEventListener('resize', requestTick);
-  onScroll();
+  requestAnimationFrame(frame);
 
   runLoader();
 })();
