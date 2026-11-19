@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Santioni Spirits | Cocktails to Indulge Now, Atone Later</title>
+  <meta name="description" content="Choose pleasure with Santioni Spirits: where intentional indulgence meets effortless enjoyment. Refined, ready-to-pour cocktails to help you savor the moment.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Santioni Spirits | Cocktails to Indulge Now, Atone Later">
+  <meta property="og:description" content="Choose pleasure with Santioni Spirits: where intentional indulgence meets effortless enjoyment. Refined, ready-to-pour cocktails to help you savor the moment.">
+  <meta name="theme-color" content="#121212">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/limelight.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/archivo-black.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="is-loading is-gated">
+  <a class="sr-only skip-link" href="#experience">Skip to content</a>
+
+  <!-- ============ LOADER ============ -->
+  <div class="LoaderView" id="loader" role="status" aria-live="polite">
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 120 120" class="emblem"><use href="#emblem"/></svg>
+    </div>
+    <div class="loader-word heading-mini">Santioni Spirits</div>
+    <div class="loading-bar" aria-label="Loading">
+      <span class="loading-bar__track"></span>
+      <span class="loading-bar__fill"></span>
+    </div>
+  </div>
+
+  <!-- ============ AGE GATE ============ -->
+  <div class="AgeGate" id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-title">
+    <div class="intro">
+      <h1 id="age-title" class="age-title">
+        <span class="top"><span class="heading2">Are you of</span></span>
+        <span class="bottom"><span class="heading2">legal age?</span></span>
+      </h1>
+      <div class="actions">
+        <button class="action body-bold" type="button" data-age="yes">Yes</button>
+        <button class="action body-bold" type="button" data-age="no">No</button>
+      </div>
+    </div>
+    <div class="denied" hidden>
+      <p class="heading3">Access</p>
+      <p class="heading3">Denied</p>
+      <p class="body-regular">You need to be of legal age to access.</p>
+    </div>
+  </div>
+
+  <!-- ============ HEADER MENU ============ -->
+  <nav class="HeaderMenu" aria-label="Primary">
+    <span class="header__background" aria-hidden="true"></span>
+    <div class="header__content">
+      <a class="header__ornament" href="#experience" aria-label="Back to top">
+        <svg viewBox="0 0 120 120" width="22" height="22"><use href="#emblem"/></svg>
+      </a>
+      <a class="header__link active" href="#experience" data-nav="experience"><span>EXPERIENCE</span></a>
+      <a class="header__link" href="#collection" data-nav="collection"><span>COLLECTION</span></a>
+      <button class="AudioToggle" type="button" aria-pressed="false" aria-label="Toggle audio">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </nav>
+
+  <canvas id="story-canvas" aria-hidden="true"></canvas>
+
+  <main class="Story" id="top">
+    <!-- ============ EXPERIENCE (the pilgrimage) ============ -->
+    <section id="experience" class="experience" aria-label="The experience">
+      <h2 class="sr-only">The pilgrimage of the saint</h2>
+      <div class="chapter chapter--title" data-scene="wander">
+        <p class="eyebrow body-bold">Notturno Collection</p>
+        <p class="title-one heading1">Santioni</p>
+        <p class="tagline body-bold">Indulge now, atone later</p>
+        <p class="scroll-cue body-bold" aria-hidden="true">Scroll to begin</p>
+      </div>
+      <div class="chapter" data-scene="wander"><p class="narration">In an immense land of nothingness, a lonely figure wanders through the mist.</p></div>
+      <div class="chapter" data-scene="hood"><p class="narration">Distant whispers alert the traveler. The saint removes his hood to look around, eyes unsure and fearful.</p></div>
+      <div class="chapter" data-scene="glimpse"><p class="narration">The saint finally catches a glimpse of what he was seeking since he went on his pilgrimage.</p></div>
+      <div class="chapter" data-scene="glimpse"><p class="narration">At the sight of it, he stands taller, gaze fixated, and determination burning within.</p></div>
+      <div class="chapter" data-scene="monolith"><p class="narration">An ominous structure stands before the saint. The humming sound seems to come from its direction. A vivid light shines through the circular portal at the base of the great monolith. Not completely believing it, the saint pauses for a moment to get his senses back.</p></div>
+      <div class="chapter" data-scene="monolith"><p class="narration">There's no time. He must see it through the end.</p></div>
+      <div class="chapter" data-scene="approach"><p class="narration">As he approaches the portal, the holy sound grows stronger, shaking him to the core. Light begins to pulsate, inviting him closer.</p></div>
+      <div class="chapter" data-scene="near"><p class="narration">A strong wind begins to blow, playful and expectant. Now standing before the portal, he raises a hand.</p></div>
+      <div class="chapter" data-scene="hand"><p class="narration">Hesitantly his hand draws forward.</p></div>
+      <div class="chapter" data-scene="hand"><p class="narration">Taking a deep breath, he steps in.</p></div>
+      <div class="chapter" data-scene="cathedral"><p class="narration">The saint loses consciousness for a brief moment. His mind struggles to process what is happening. He awakens in an exalted room lit by a warm light.</p></div>
+      <div class="chapter" data-scene="cathedral"><p class="narration">In front of him, a large pedestal pulsates with light.</p></div>
+
+      <div class="chapter chapter--select" data-scene="selection">
+        <p class="narration">Three Santioni Spirits bottles glint on the table, vibrating with a tantalizing shimmer. The saint pauses. Somehow, they're calling to him, inviting him to indulge.</p>
+        <div class="DrinkSelectionUI" role="radiogroup" aria-label="Choose a bottle for the saint">
+          <button class="bottle-pick" role="radio" aria-checked="false" data-bottle="1" style="--drink:#63C4F4">
+            <svg viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
+            <span class="body-bold">Orange</span>
+          </button>
+          <button class="bottle-pick" role="radio" aria-checked="true" data-bottle="2" style="--drink:#97F3AD">
+            <svg viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
+            <span class="body-bold">Mint</span>
+          </button>
+          <button class="bottle-pick" role="radio" aria-checked="false" data-bottle="3" style="--drink:#FBEB7F">
+            <svg viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
+            <span class="body-bold">Marshmallow</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="chapter" data-scene="beam">
+        <p class="narration" id="drink-copy" aria-live="polite">The saint drinks, and in an instant, a beam of light engulfs him, swirling with mint, chocolate, and cream, an ethereal trail that lifts him beyond the senses.</p>
+      </div>
+      <div class="chapter" data-scene="float"><p class="narration">The saint gently floats back to the floor, one foot after the other. His robe now saturated with the color of the mysterious liquid.</p></div>
+      <div class="chapter" data-scene="crumble"><p class="narration">The sudden roar of shattering stone fills the air. The columns and roof begin to break apart and lift away, revealing a deep red sky.</p></div>
+    </section>
+
+    <!-- ============ COLLECTION ============ -->
+    <section id="collection" class="CollectionUI" aria-labelledby="collection-title">
+      <div class="collection-ui__center-text">
+        <p class="left-text heading3">Santioni</p>
+        <div class="collection-ui__text-quad">
+          <span class="quad-frame" aria-hidden="true"></span>
+          <p class="quad-line body-bold">An ode to the night, your night</p>
+          <div class="quad-bottles" aria-hidden="true">
+            <svg viewBox="0 0 80 220" style="--drink:#63C4F4"><use href="#bottle"/></svg>
+            <svg viewBox="0 0 80 220" style="--drink:#97F3AD"><use href="#bottle"/></svg>
+            <svg viewBox="0 0 80 220" style="--drink:#FBEB7F"><use href="#bottle"/></svg>
+          </div>
+          <h2 id="collection-title" class="quad-line body-bold">Notturno Collection</h2>
+        </div>
+        <p class="right-text heading3">Spirits</p>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCTS ============ -->
+    <section class="ProductsUI" id="products" aria-roledescription="carousel" aria-label="The Notturno Collection">
+      <div class="container">
+        <button class="left-text side-nav" type="button" aria-label="previous slide"><span class="body-bold" data-prev-label>Marshmallow Coffee &amp; Cream</span></button>
+        <div class="gl-bounds">
+          <ul class="slides">
+            <li class="slide" data-index="0" style="--drink:#63C4F4" aria-roledescription="slide" aria-label="1 of 3">
+              <svg class="product-bottle" viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
+              <h3 class="product-name">Orange<br>Chocolate<br>&amp; Cream</h3>
+              <p class="product-notes body-regular">Bright orange zest folded into dark chocolate and heavenly cream.</p>
+            </li>
+            <li class="slide" data-index="1" style="--drink:#97F3AD" aria-roledescription="slide" aria-label="2 of 3">
+              <svg class="product-bottle" viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
+              <h3 class="product-name">Mint<br>Chocolate<br>&amp; Cream</h3>
+              <p class="product-notes body-regular">Cool mint and velvet chocolate, softened with sweet cream.</p>
+            </li>
+            <li class="slide" data-index="2" style="--drink:#FBEB7F" aria-roledescription="slide" aria-label="3 of 3">
+              <svg class="product-bottle" viewBox="0 0 80 220" aria-hidden="true"><use href="#bottle"/></svg>
+              <h3 class="product-name">Marshmallow<br>Coffee<br>&amp; Cream</h3>
+              <p class="product-notes body-regular">Toasted marshmallow over roasted coffee and a ribbon of cream.</p>
+            </li>
+          </ul>
+        </div>
+        <button class="right-text side-nav" type="button" aria-label="next slide"><span class="body-bold" data-next-label>Mint Chocolate &amp; Cream</span></button>
+      </div>
+      <div class="mobile-arrows">
+        <button class="mobile-arrow-left" type="button" aria-label="previous slide"><svg viewBox="0 0 20 7" width="20" height="7" aria-hidden="true"><path d="M20 3.5H1M1 3.5 4.5 0M1 3.5 4.5 7" stroke="#121212" stroke-width="1.4" fill="none"/></svg></button>
+        <button class="mobile-arrow-right" type="button" aria-label="next slide"><svg viewBox="0 0 20 7" width="20" height="7" aria-hidden="true"><path d="M0 3.5h19M19 3.5 15.5 0M19 3.5 15.5 7" stroke="#121212" stroke-width="1.4" fill="none"/></svg></button>
+      </div>
+      <div class="dots" role="tablist" aria-label="Choose a flavor">
+        <button role="tab" data-go="0" aria-label="Orange Chocolate &amp; Cream"></button>
+        <button role="tab" data-go="1" aria-label="Mint Chocolate &amp; Cream"></button>
+        <button role="tab" data-go="2" aria-label="Marshmallow Coffee &amp; Cream"></button>
+      </div>
+    </section>
+
+    <!-- ============ TASTE ============ -->
+    <section class="TasteUI" id="taste" aria-labelledby="taste-title">
+      <div class="container">
+        <div class="row-heading">
+          <h2 id="taste-title" class="heading-taste" data-heading="1">The Notturno Collection <br>is an ode to the night</h2>
+          <p class="heading-taste" data-heading="2">A taste<br>of possibility</p>
+          <p class="heading-taste" data-heading="3">Inspired by the quiet glamour<br>of the late hours</p>
+        </div>
+        <div class="gl-bounds taste-swirl" aria-hidden="true">
+          <span style="--drink:#63C4F4"></span><span style="--drink:#97F3AD"></span><span style="--drink:#FBEB7F"></span>
+        </div>
+        <div class="row-copy">
+          <p class="side-text body-bold">Santioni</p>
+          <p class="side-text body-bold">Spirits</p>
+          <p class="copy body-regular">True devotion requires a little indulgence. Santioni Spirits is crafted for the saints and the sinners alike. The Notturno Collection blends heavenly cream and earthly decadence to unwind your soul and elevate your evenings.</p>
+          <p class="side-text body-bold">Notturno</p>
+          <p class="side-text body-bold">Collection</p>
+        </div>
+        <div class="row-copy-mobile">
+          <p class="body-bold">Santioni<br>Spirits</p>
+          <p class="body-bold">Notturno<br>Collection</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ POUR RITUAL ============ -->
+    <section class="DrinkPourUI" id="pour" aria-labelledby="pour-title">
+      <h2 id="pour-title" class="heading2 pour-heading">The night starts<br> after dinner</h2>
+      <ol class="pour-steps">
+        <li class="pour-section">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6v52M10 19l44 26M54 19 10 45M32 6l-5 5m5-5 5 5M32 58l-5-5m5 5 5-5" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+          <h3 class="body-bold">Chill your spirit</h3>
+          <p class="body-regular">The night starts after dinner.</p>
+        </li>
+        <li class="pour-section">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M22 14h20l-3 44H25zM20 8h24v6H20z" stroke="currentColor" stroke-width="3" fill="none" stroke-linejoin="round"/><path d="M10 26c-4 6-4 12 0 18M54 26c4 6 4 12 0 18" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+          <h3 class="body-bold">Shake your spirit</h3>
+          <p class="body-regular">Let the night play on.</p>
+        </li>
+        <li class="pour-section">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 12h40L34 34v18h10M34 52H24" stroke="currentColor" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M20 20h24" stroke="currentColor" stroke-width="3"/></svg>
+          <h3 class="body-bold">Pour your spirit</h3>
+          <p class="body-regular">What happens next is up to you.</p>
+        </li>
+      </ol>
+      <p class="heading2 pour-heading pour-heading--end">What happens<br> next is up to you</p>
+    </section>
+
+    <!-- ============ RETAIL ============ -->
+    <section class="RetailUI" id="retail" data-retailers-length="0" aria-labelledby="retail-list-heading">
+      <div class="container">
+        <div class="header">
+          <div class="mobile-header-text body-bold"><span>Santioni<br>Spirits</span><span>Notturno<br>Collection</span></div>
+          <div class="header-row">
+            <p class="header-row-left body-bold">Santioni<br>Spirits</p>
+            <div class="stack"><h2 class="heading3" id="retail-list-heading">Our Retailers</h2></div>
+            <p class="header-row-right body-bold">Notturno<br>Collection</p>
+          </div>
+          <p class="body-bold forthcoming">Select Houses Forthcoming</p>
+        </div>
+        <div class="list">
+          <span class="decoration" aria-hidden="true"><span class="line"></span></span>
+          <ul class="list-content"></ul>
+          <span class="decoration" aria-hidden="true"><span class="line"></span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="FooterUI" id="footer">
+      <div class="footer-group">
+        <a class="footer-logo" href="#top" aria-label="Santioni Spirits Logo, back to top">
+          <svg viewBox="0 0 280 120" aria-hidden="true"><use href="#wordmark"/></svg>
+        </a>
+        <div class="footer-social">
+          <a class="body-bold" href="https://www.instagram.com/santionispirits" target="_blank" rel="noopener">Instagram</a>
+          <a class="body-bold footer-email" href="mailto:indulge@santionispirits.com">indulge@santionispirits.com</a>
+        </div>
+      </div>
+      <div class="footer-group footer-group--bottom">
+        <p class="footer-tag body-regular">Cocktails to indulge now, atone later. Please enjoy responsibly.</p>
+        <div class="footer-links body-regular">
+          <span>Original experience by <a class="underline" href="https://activetheory.net" target="_blank" rel="noopener">Active Theory</a> and <a class="underline" href="https://plan8.co" target="_blank" rel="noopener">Plan8</a></span>
+          <a class="underline" href="https://cdn.sanity.io/files/nhqx6ogi/production/d2513cb86f7baedec1e90571f62be07acd158d56.pdf?dl=privacy-policy.pdf" target="_blank" rel="noopener">Legal</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ============ COOKIE BANNER ============ -->
+  <div class="CookieBanner" id="cookie-banner" role="region" aria-label="Cookie notice" hidden>
+    <p class="XText">This website uses cookies to improve your experience and for analytics and marketing purposes. View our <a class="privacy-link" href="https://cdn.sanity.io/files/nhqx6ogi/production/d2513cb86f7baedec1e90571f62be07acd158d56.pdf?dl=privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a> for more information.</p>
+    <div class="cookie-banner-buttons">
+      <button class="x-button body-bold" type="button" data-cookie="accept">Accept</button>
+      <button class="x-button secondary body-bold" type="button" data-cookie="decline">Decline</button>
+    </div>
+  </div>
+
+  <!-- ============ SVG SYMBOLS (original artwork) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="glass" x1="0" x2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".35"/>
+        <stop offset=".35" stop-color="#fff" stop-opacity=".05"/>
+        <stop offset="1" stop-color="#fff" stop-opacity=".25"/>
+      </linearGradient>
+    </defs>
+    <!-- haloed saint emblem -->
+    <symbol id="emblem" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="3"/>
+      <g stroke="currentColor" stroke-width="2" opacity=".8">
+        <path d="M60 10v14M60 96v14M10 60h14M96 60h14M25 25l10 10M85 85l10 10M95 25 85 35M35 85 25 95"/>
+      </g>
+      <circle cx="60" cy="44" r="15" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M60 33c-7 0-10 6-10 12 0 3 2 6 4 7h12c2-1 4-4 4-7 0-6-3-12-10-12z" fill="currentColor"/>
+      <path d="M36 98c2-22 10-36 24-36s22 14 24 36" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M52 74h16l-5 8v8h4M60 90h-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+    <!-- wordmark: emblem + script-like lockup -->
+    <symbol id="wordmark" viewBox="0 0 280 120">
+      <use href="#emblem" x="0" y="4" width="112" height="112"/>
+      <text x="124" y="62" font-family="Limelight, serif" font-size="42" textLength="152" lengthAdjust="spacingAndGlyphs" fill="currentColor">Santioni</text>
+      <text x="148" y="104" font-family="Limelight, serif" font-size="36" textLength="126" lengthAdjust="spacingAndGlyphs" fill="currentColor">Spirits</text>
+    </symbol>
+    <!-- Notturno bottle -->
+    <symbol id="bottle" viewBox="0 0 80 220">
+      <rect x="30" y="2" width="20" height="18" rx="3" fill="#121212"/>
+      <rect x="28" y="18" width="24" height="6" rx="2" fill="#C82924"/>
+      <path d="M32 24h16v26c0 8 22 16 22 36v118c0 8-6 14-14 14H24c-8 0-14-6-14-14V86c0-20 22-28 22-36z" fill="#f4f2ea"/>
+      <path d="M12 120h56v84c0 7-5 12-12 12H24c-7 0-12-5-12-12z" fill="var(--drink,#97F3AD)" opacity=".9"/>
+      <rect x="16" y="104" width="48" height="74" rx="4" fill="#121212"/>
+      <use href="#emblem" x="28" y="110" width="24" height="24" color="var(--drink,#97F3AD)"/>
+      <text x="40" y="150" text-anchor="middle" font-family="Limelight, serif" font-size="10" textLength="40" lengthAdjust="spacingAndGlyphs" fill="#fff">SANTIONI</text>
+      <text x="40" y="164" text-anchor="middle" font-family="'Archivo Black', sans-serif" font-size="6.5" fill="var(--drink,#97F3AD)">NOTTURNO</text>
+      <path d="M32 24h16v26c0 8 22 16 22 36v118c0 8-6 14-14 14H24c-8 0-14-6-14-14V86c0-20 22-28 22-36z" fill="url(#glass)" stroke="#121212" stroke-opacity=".25"/>
+    </symbol>
+  </svg>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "balright",
+  "private": true,
+  "description": "Remake of santionispirits.com as a dependency-free static site.",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "report": "node scripts/remake-report.js --out report"
+  }
+}
